@@ -1,0 +1,46 @@
+﻿@model List<SSS>
+
+        <!-- Section: inner-header -->
+        <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/Shared/images/bg/bg3.jpg">
+            <div class="container pt-70 pb-20">
+                <!-- Section Content -->
+                <div class="section-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="title text-white">Sık Sorulan Sorular</h2>
+                            <ol class="breadcrumb text-left text-black mt-10">
+                                <li><a href="/">Anasayfa</a></li>
+                                <li><a href="#">SSS</a></li>
+                                <li class="active text-gray-silver">Sık Sorulan Sorular</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="position-inherit">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 scrolltofixed-container">
+                        <div class="list-group scrolltofixed z-index-0">
+                            @foreach (var item in Model)
+                            {
+                                <a href="#section-@item.Id" class="list-group-item smooth-scroll-to-target">@item.Ad</a>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        @foreach (var item in Model)
+                        {
+                            <div id="section-@item.Id" class="mb-50">
+                                <h3>@item.Ad</h3>
+                                <hr>
+                                <p class="mb-20">@item.Aciklama</p>
+                                 </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+ 

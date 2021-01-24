@@ -1,0 +1,41 @@
+﻿@model Sayfa
+
+    <!-- Section: inner-header -->
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/Shared/images/bg/bg3.jpg">
+        <div class="container pt-70 pb-20">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="title text-white">@Model.Baslik</h2>
+                        <ol class="breadcrumb text-left text-black mt-10">
+                            <li><a href="#">Izburs</a></li>
+                            <li><a href="#">Sayfa</a></li>
+                            <li class="active text-gray-silver">@Model.Baslik</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Experts Details -->
+    <section>
+        <div class="container">
+            <div class="section-content">
+                <div class="row">
+                   
+                    <div class="col-md-12">
+                        <h4 class="name font-24 mt-0 mb-0">@Model.Baslik</h4>
+                        <p>@Html.Raw(Model.Icerik)</p>
+                        <ul class="styled-icons icon-dark icon-theme-colored icon-sm mt-15 mb-0">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+    </section>

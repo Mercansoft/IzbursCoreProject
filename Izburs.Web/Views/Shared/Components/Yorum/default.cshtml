@@ -1,0 +1,103 @@
+﻿@model List<Yorum>
+<div class="comments-area">
+    <h5 class="comments-title">Yorumlar</h5>
+    <ul class="comment-list">
+        @foreach (var item in Model)
+        {
+            <li>
+                <div class="media comment-author">
+                    <a class="media-left pull-left flip" href="#"><img class="img-thumbnail" src="/Shared/images/blog/comment1.jpg" alt=""></a>
+                    <div class="media-body">
+                        <h5 class="media-heading comment-heading">@item.AdSoyad yazdı:</h5>
+                        <div class="comment-date">@item.KayitTarihi.ToShortDateString()</div>
+                        <p>@item.Mesaj</p>
+                        @*<a class="replay-icon pull-right text-theme-colored" href="#"> <i class="fa fa-reply text-theme-colored"></i> Replay</a>*@
+                    </div>
+                </div>
+            </li>
+        }
+        @*<li>
+            <div class="media comment-author">
+                <a class="media-left pull-left flip" href="#"><img class="img-thumbnail" src="/Shared/images/blog/comment1.jpg" alt=""></a>
+                <div class="media-body">
+                    <h5 class="media-heading comment-heading">John Doe says:</h5>
+                    <div class="comment-date">23/06/2014</div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna et sed aliqua. Ut enim ea commodo consequat...</p>
+                    <a class="replay-icon pull-right text-theme-colored" href="#"> <i class="fa fa-reply text-theme-colored"></i> Replay</a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="media comment-author">
+                <a class="media-left pull-left flip" href="#"><img class="img-thumbnail" src="/Shared/images/blog/comment2.jpg" alt=""></a>
+                <div class="media-body">
+                    <h5 class="media-heading comment-heading">John Doe says:</h5>
+                    <div class="comment-date">23/06/2014</div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna et sed aliqua. Ut enim ea commodo consequat...</p>
+                    <a class="replay-icon pull-right text-theme-colored" href="#"> <i class="fa fa-reply text-theme-colored"></i> Replay</a>
+                    <div class="clearfix"></div>
+                    <div class="media comment-author nested-comment">
+                        <a href="#" class="media-left pull-left flip pt-20"><img alt="" src="/Shared/images/blog/comment3.jpg" class="img-thumbnail"></a>
+                        <div class="media-body p-20 bg-lighter">
+                            <h5 class="media-heading comment-heading">John Doe says:</h5>
+                            <div class="comment-date">23/06/2014</div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna et sed aliqua. Ut enim ea commodo consequat...</p>
+                            <a class="replay-icon pull-right text-theme-colored" href="#"> <i class="fa fa-reply text-theme-colored"></i> Replay</a>
+                        </div>
+                    </div>
+                    <div class="media comment-author nested-comment">
+                        <a href="#" class="media-left pull-left flip pt-20"><img alt="" src="/Shared/images/blog/comment1.jpg" class="img-thumbnail"></a>
+                        <div class="media-body p-20 bg-lighter">
+                            <h5 class="media-heading comment-heading">John Doe says:</h5>
+                            <div class="comment-date">23/06/2014</div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna et sed aliqua. Ut enim ea commodo consequat...</p>
+                            <a class="replay-icon pull-right text-theme-colored" href="#"> <i class="fa fa-reply text-theme-colored"></i> Replay</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="media comment-author">
+                <a class="media-left pull-left flip" href="#"><img class="img-thumbnail" src="/Shared/images/blog/comment2.jpg" alt=""></a>
+                <div class="media-body">
+                    <h5 class="media-heading comment-heading">John Doe says:</h5>
+                    <div class="comment-date">23/06/2014</div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna et sed aliqua. Ut enim ea commodo consequat...</p>
+                    <a class="replay-icon pull-right text-theme-colored" href="#"> <i class="fa fa-reply text-theme-colored"></i> Replay</a>
+                </div>
+            </div>
+        </li>*@
+    </ul>
+</div>
+<div id="sonuc"></div>
+<div class="comment-box">
+    <div class="row">
+        <div class="col-sm-12">
+            <h5>Yorum Yaz</h5>
+            <div class="row">
+                @*<form role="form" id="comment-form">*@
+                <div class="col-sm-6 pt-0 pb-0">
+                    <div class="form-group">
+                        <input type="text" class="form-control" required name="AdSoyad" id="contact_name" placeholder="Adınız Soyadınız">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" required class="form-control" name="Email" id="contact_email2" placeholder="E-mail Adresiniz">
+                    </div>
+                    @*<div class="form-group">
+                <input type="text" placeholder="Enter Website" required class="form-control" name="subject">
+            </div>*@
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <textarea class="form-control" required name="Mesaj" id="contact_message2" placeholder="Yorumunuz" rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" id="YorumGonder" class="btn btn-dark btn-flat pull-right m-0">Submit</button>
+                    </div>
+                </div>
+                @*</form>*@
+            </div>
+        </div>
+    </div>
+</div>

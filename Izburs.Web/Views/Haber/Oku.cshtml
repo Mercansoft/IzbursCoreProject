@@ -1,0 +1,165 @@
+﻿@model Haber
+<script>
+        $(function () {
+            $("#YorumGonder").click(function () {
+                       var AdSoyad = $("#contact_name").val();
+        var Email = $("#contact_email2").val();
+        var Mesaj = $("#contact_message2").val();
+        var HaberId = $("#HaberId").val();
+        $.ajax({
+            type: "POST",
+            url: "/Haber/YorumGonder",
+            data: { AdSoyad: AdSoyad, Email: Email, Mesaj: Mesaj, HaberId: HaberId },
+            dataType: "json",
+            success: function (data) {
+                if (data == "ok") {
+                    $("#sonuc").append("<div class='alert alert-success'>Tebrikler! Yorumunuz Başarıyla Gönderildi. Onaylandıktan sonra gösterilecektir.</div>");
+                } else {
+                    $("#sonuc").append("<div class='alert alert-danger'>Hata! Yorumunuz Başarısız oldu.</div>");
+                }
+            }
+
+        });
+            });
+        });
+    </script>
+
+<!-- Section: inner-header -->
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/Shared/images/bg/bg3.jpg">
+    <div class="container pt-70 pb-20">
+        <!-- Section Content -->
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="title text-white">@Model.Baslik</h2>
+                    <ol class="breadcrumb text-left text-black mt-10">
+                        <li><a href="#">Izburs</a></li>
+                        <li><a href="#">Haber</a></li>
+                        <li class="active text-gray-silver">@Model.Baslik</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section: Blog -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-3">
+                <div class="sidebar sidebar-left mt-sm-30">
+                    <div class="widget">
+                        <h5 class="widget-title line-bottom">Arama</h5>
+                        <div class="search-form">
+                            <form>
+                                <div class="input-group">
+                                    <input type="text" placeholder="Click to Search" class="form-control search-input">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="widget">
+                        <h5 class="widget-title line-bottom">Kategoriler</h5>
+                        <div class="categories">
+                            <ul class="list list-border angle-double-right">
+                                <li><a href="#">Creative<span>(19)</span></a></li>
+                                <li><a href="#">Portfolio<span>(21)</span></a></li>
+                                <li><a href="#">Fitness<span>(15)</span></a></li>
+                                <li><a href="#">Gym<span>(35)</span></a></li>
+                                <li><a href="#">Personal<span>(16)</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    @await Component.InvokeAsync("CokOkunanHaber")
+         
+                    <!--<div class="widget">
+        <h5 class="widget-title line-bottom">Photos from Flickr</h5>
+        <div id="flickr-feed" class="clearfix">-->
+                    <!-- Flickr Link -->
+                    <!--<script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=9&amp;display=latest&amp;size=s&amp;layout=x&amp;source=user&amp;user=52617155@N08">
+            </script>
+        </div>
+    </div>-->
+                </div>
+            </div>
+            <div class="col-md-9 blog-pull-right">
+                <div class="blog-posts single-post">
+                    <article class="post clearfix mb-0">
+                        <div class="entry-header">
+                            <div class="post-thumb thumb"> <img src="@Model.Resim" alt="@Model.Baslik" height="600" class="img-responsive img-fullwidth"> </div>
+                        </div>
+                        <div class="entry-title pt-10 pl-15">
+                            <h4><a class="text-uppercase" href="#">@Model.Baslik </a></h4>
+                        </div>
+                        <div class="entry-meta pl-15">
+                            <ul class="list-inline">
+                                <li>Tarih: <span class="text-theme-color-2"> @Model.KayitTarihi.ToShortDateString()</span></li>
+                                <li><span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-user"></i> Admin</span></li>
+                                <li>
+                                    @if (Model.Yorumlar.Count == 0)
+                                    {
+                                        <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-colored"></i> Yorum Yok</span>
+                                        @*<p><i class="fa fa-comments-o ml-5 mr-5"></i>Yorum Yok</p>*@
+                                    }
+                                    else
+                                    {
+                                <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-colored"></i> @Model.Yorumlar.Count yorum var</span>
+                                        @*<p><i class="fa fa-comments-o ml-5 mr-5"></i>@Model.Yorumlar.Count yorum var</p>*@
+                                    }
+                                </li>
+                                <li>
+                                    <span class="mb-10 text-gray-darkgray mr-10 font-13"> <i class="fa fa-eye"></i> @Model.Hit Görüntüleme</span>
+                                  
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="entry-content mt-10">
+                            <p class="mb-15">@Html.Raw(Model.Icerik)</p>
+                            <div class="mt-30 mb-0">
+                                <h5 class="pull-left mt-10 mr-20 text-theme-color-2">Paylaş:</h5>
+                                <ul class="styled-icons icon-circled m-0">
+                                    <li><a href="#" data-bg-color="#3A5795"><i class="fa fa-facebook text-white"></i></a></li>
+                                    <li><a href="#" data-bg-color="#55ACEE"><i class="fa fa-twitter text-white"></i></a></li>
+                                    <li><a href="#" data-bg-color="#A11312"><i class="fa fa-google-plus text-white"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                    @*<div class="tagline p-0 pt-20 mt-5">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="tags">
+                                        <p class="mb-0"><i class="fa fa-tags text-theme-color-2"></i> <span>Etiketler:</span> Engine, Wheel, Oil, Brake</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="share text-right">
+                                        <p><i class="fa fa-share-alt text-theme-color-2"></i> Share</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    @*<div class="author-details media-post">
+                            <a href="#" class="post-thumb mb-0 pull-left flip pr-20"><img class="img-thumbnail" alt="" src="/Shared/images/blog/author.jpg"></a>
+                            <div class="post-right">
+                                <h5 class="post-title mt-0 mb-0"><a href="#" class="font-18">John Doe</a></h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna et sed aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                <ul class="styled-icons square-sm m-0">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>*@
+                    @await Component.InvokeAsync("Yorum", Model.Id)
+                    <input type="hidden" id="HaberId" value="@Model.Id" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

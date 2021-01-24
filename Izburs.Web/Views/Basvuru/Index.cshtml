@@ -1,0 +1,489 @@
+﻿@model BasvuruViewModel 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("div#panel").hide(100);
+            $("div#BabaMeslegi").hide(100);
+            $("div#AnneMeslegi").hide(100);
+            $("div#KardesSayisi").hide(100);
+            $("div#KardesIsOkul").hide(100);
+            $("div#EvKiraPanel").hide(100);
+            $("div#Ispanel").hide(100);
+
+            $("#KardesSayisi").on("keypress", function (event) {
+                if (event.keyCode != 8 && event.keyCode != 0 && (event.keyCode < 48 || event.keyCode > 57))
+                    return false;
+            });
+            $("#TcKimlikNo").on("keypress", function (event) {
+                if (event.keyCode != 8 && event.keyCode != 0 && (event.keyCode < 48 || event.keyCode > 57))
+                    return false;
+            });
+            //$("#DogumTarihi").on("keypress", function (event) {
+            //    if (event.keyCode != 8 && event.keyCode != 0 && (event.keyCode < 48 || event.keyCode > 57))
+            //        return false;
+            //});
+            $("#Telefon").on("keypress", function (event) {
+                if (event.keyCode != 8 && event.keyCode != 0 && (event.keyCode < 48 || event.keyCode > 57))
+                    return false;
+            });
+            $("#Sinif").on("keypress", function (event) {
+                if (event.keyCode != 8 && event.keyCode != 0 && (event.keyCode < 48 || event.keyCode > 57))
+                    return false;
+            });
+            $("#GelirMiktar").on("keypress", function (event) {
+                if (event.keyCode != 8 && event.keyCode != 0 && (event.keyCode < 48 || event.keyCode > 57))
+                    return false;
+            });
+            $("#AnneMeslegi").on("keypress", function (event) {
+                if (event.keyCode != 8 && event.keyCode != 0 && (event.keyCode < 48 || event.keyCode > 57))
+                    return false;
+            });
+            $("#BabaMeslegi").on("keypress", function (event) {
+                if (event.keyCode != 8 && event.keyCode != 0 && (event.keyCode < 48 || event.keyCode > 57))
+                    return false;
+            }); $("#IsGelir").on("keypress", function (event) {
+                if (event.keyCode != 8 && event.keyCode != 0 && (event.keyCode < 48 || event.keyCode > 57))
+                    return false;
+            });
+            $("#EvKiraUcreti").on("keypress", function (event) {
+                if (event.keyCode != 8 && event.keyCode != 0 && (event.keyCode < 48 || event.keyCode > 57))
+                    return false;
+            });
+            $("#form1").on("keyup", function (event) {
+                form_kontrolu();
+            });
+        });
+        function goster() {
+            $("div#panel").show(100);
+        }
+        function gizle() {
+            $("div#panel").hide(100);
+        }
+
+        function BabaMeslekGoster() {
+            $("div#BabaMeslegi").show(100);
+        }
+        function BabaMeslekGizle() {
+            $("div#BabaMeslegi").hide(100);
+        }
+
+        function AnneMeslekGoster() {
+            $("div#AnneMeslegi").show(100);
+        }
+        function AnneMeslekGizle() {
+            $("div#AnneMeslegi").hide(100);
+        }
+
+        function KiraGoster() {
+            $("div#EvKiraPanel").show(100);
+        }
+        function KiraGizle() {
+            $("div#EvKiraPanel").hide(100);
+        }
+        function IsGoster() {
+            $("div#Ispanel").show(100);
+        }
+        function IsGizle() {
+            $("div#Ispanel").hide(100);
+        }
+        ////////////////
+
+        function KardesIsOkulGoster() {
+            $("div#KardesIsOkul").show(100);
+            $("div#KardesSayisi").show(100);
+        }
+        function KardesIsOkulGizle() {
+            $("div#KardesIsOkul").hide(100);
+            $("div#KardesSayisi").hide(100);
+        }
+
+    </script>
+<section id="home" class="divider parallax layer-overlay overlay-dark-9" data-bg-img="/Shared/images/bg/bg1.jpg">
+    <div class="display-table">
+        <div class="display-table-cell">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-push-3">
+                        <div class="text-center mb-60">
+                            <a href="#" class=""><img alt="" src="/Shared/images/logo-wide.png"></a>
+                        </div>
+                        <div class="bg-lightest border-1px p-30 mb-0">
+                            <h3 class="text-theme-colored mt-0 pt-5"> Apply Now</h3>
+                            <hr>
+                            <p>Lorem ipsum dolor sit amet, consectetur elit.</p>
+                        
+                            <form asp-action="Index" asp-controller="Basvuru" method="post" enctype="multipart/form-data">
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label>Resminizi Seçiniz</label>
+                                    <input asp-for="Kullanici.Resim" class="file" name="Resim" type="file" multiple data-show-upload="false" data-show-caption="true">
+                                    <span asp-validation-for="@Model.Kullanici.Resim" class="text-danger"></span>
+                                    <small>Yükleyeceğiniz resim jpg formatında olsun ve 1200*800 boyutlarını geçmesin lütfen.</small>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Ad <small>*</small></label>
+                                            <input asp-for="@Model.Kullanici.Ad" name="Ad" type="text" placeholder="Enter Name" class="form-control">
+                                            <span asp-validation-for="Kullanici.Ad" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Soyad <small>*</small></label>
+                                            <input asp-for="Kullanici.Soyad" name="Soyad" type="text" placeholder="Enter Name" class="form-control">
+                                            <span asp-validation-for="Kullanici.Soyad" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Doğum Tarihiniz <small>*</small></label>
+                                            <input asp-for="Kullanici.DogumTarihi" name="DogumTarihi" type="date" placeholder=" Name" class="form-control">
+                                            <span asp-validation-for="Kullanici.DogumTarihi" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>TC Kimlik Numaranız <small>*</small></label>
+                                            <input asp-for="Kullanici.TcKimlikNo" name="TcKimlikNo" type="number" maxlength="11" placeholder="Enter Name" class="form-control">
+                                            <span asp-validation-for="Kullanici.TcKimlikNo" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>İkametgah Adresiniz (Aileniz ile birlikte ikamet ettiğiniz adres) <small>*</small></label>
+                                    <textarea asp-for="Kullanici.Adres" name="Adres" class="form-control" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Şehir Seçiniz <small>*</small></label>
+                                    @*<select asp-for="Kullanici.SehirId" asp-items="Sehir"></select>*@
+                                    <select asp-for="Kullanici.SehirId"
+                                            class="form-control" name="SehirId"
+                                            asp-items="@(new SelectList(Model.Sehir,"Id","Ad"))">
+                                        <option value="null">Lütfen Ailenizin Oturduğu Şehri Seçiniz</option>
+                                    </select>
+                                    <span asp-validation-for="Kullanici.SehirId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>İrtibat Telefonunuz Cep/Ev <small>*</small></label>
+                                    <input asp-for="Kullanici.Telefon" name="Telefon" type="number" class="form-control">
+                                    <span asp-validation-for="Kullanici.Telefon" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>E-mail Adresiniz <small>*</small></label>
+                                    <input asp-for="Kullanici.Email" name="Email" type="email" class="form-control">
+                                    <span asp-validation-for="Kullanici.Email" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Okul Türünüzü Seçiniz <small>*</small></label>
+                                    @*<select asp-for="Kullanici.SehirId" asp-items="Sehir"></select>*@
+                                    <select asp-for="Kullanici.OkulTuruId"
+                                            class="form-control" name="OkulTuruId"
+                                            asp-items="@(new SelectList(Model.OkulTuru,"Id","Ad"))">
+                                        <option value="null">Lütfen Okul Türünüzü Seçiniz</option>
+                                    </select>
+                                    <span asp-validation-for="Kullanici.OkulTuruId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Okul Seçiniz <small>*</small></label>
+                                    @*<select asp-for="Kullanici.SehirId" asp-items="Sehir"></select>*@
+                                    <select asp-for="Kullanici.OkulId" name="OkulId"
+                                            class="form-control"
+                                            asp-items="@(new SelectList(Model.Okul,"Id","Ad"))">
+                                        <option value="null">Lütfen Okulunuzu Seçiniz</option>
+                                    </select>
+                                    <span asp-validation-for="Kullanici.OkulId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Bölüm Seçiniz <small>*</small></label>
+                                    @*<select asp-for="Kullanici.SehirId" asp-items="Sehir"></select>*@
+                                    <select asp-for="Kullanici.BolumId" name="BolumId"
+                                            class="form-control"
+                                            asp-items="@(new SelectList(Model.Bolum,"Id","Ad"))">
+                                        <option value="null">Lütfen Bölümünüzü Seçiniz</option>
+                                    </select>
+                                    <span asp-validation-for="Kullanici.BolumId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Sınıfınız <small>*</small></label>
+                                    <input asp-for="Kullanici.Sinif" name="Sinif" type="number" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Herhangibir İşte Çalışıyormusunuz? <small>*</small></label>
+                                    <div class="radio mt-20">
+                                        <label>
+                                            <input type="radio" name="Is" asp-for="Kullanici.Is" id="optionsRadios1" value="Evet" Onclick="IsGoster()">
+                                            Evet
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="Is" asp-for="Kullanici.Is" id="optionsRadios2" value="Hayır" Onclick="IsGizle()">
+                                            Hayır
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="Ispanel">
+                                    <div class="form-group">
+                                        <label>Çalıştığınız işten ne kadar gelir elde ediyorsunuz? <small>*</small></label>
+                                        <input asp-for="Kullanici.OgrenciGelir" name="OgrenciGelir" type="number" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>KYK Dışında Başka bir Kuruluştan burs alıyormusunuz?  <small>*</small></label>
+                                    <div class="radio mt-20">
+                                        <label>
+                                            <input type="radio" asp-for="Kullanici.BaskaBurs" name="BaskaBurs" id="optionsRadios1" value="Evet" Onclick="goster()">
+                                            Evet
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" asp-for="Kullanici.BaskaBurs" name="BaskaBurs" id="optionsRadios2" value="Hayır" Onclick="gizle()">
+                                            Hayır
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="panel">
+                                    <div class="form-group">
+                                        <label>Nerden Burs Alıyorsunuz? <small>*</small></label>
+                                        <input asp-for="Kullanici.BursNerden" name="BursNerden" type="text" class="form-control" placeholder="KYK,Başbakanlık Bursu vb gibi aralarına virgül koyarak yazınız">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Üye Olduğunuz Dernekler varmı? <small>*</small></label>
+                                    <textarea asp-for="Kullanici.UyeDernek" name="UyeDernek" class="form-control" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Özel Uğraşılarınız varmı? varsa nelerdir<small>*</small></label>
+                                    <textarea asp-for="Kullanici.OzelUgras" name="OzelUgras" class="form-control" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Anneniz Sağmı?  <small>*</small></label>
+                                    <div class="radio mt-20">
+                                        <label>
+                                            <input type="radio" asp-for="Kullanici.AnneSag" name="AnneSag" id="AnneSag" value="Evet" Onclick="AnneMeslekGoster()">
+                                            Evet
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" asp-for="Kullanici.AnneSag" name="AnneSag" id="AnneSag" value="Hayır" Onclick="AnneMeslekGizle()">
+                                            Hayır
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Babanız Sağmı?  <small>*</small></label>
+                                    <div class="radio mt-20">
+                                        <label>
+                                            <input type="radio" asp-for="Kullanici.BabaSag" name="BabaSag" id="BabaSag" value="Evet" Onclick="BabaMeslekGoster()">
+                                            Evet
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" asp-for="Kullanici.BabaSag" name="BabaSag" id="BabaSag" value="Hayır" Onclick="BabaMeslekGizle()">
+                                            Hayır
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Anne Baba Birliktemi?  <small>*</small></label>
+                                    <div class="radio mt-20">
+                                        <label>
+                                            <input type="radio" asp-for="Kullanici.AnneBabaBirlikte" name="AnneBabaBirlikte" id="AnneBabaBirlikte" value="Evet">
+                                            Evet
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" asp-for="Kullanici.AnneBabaBirlikte" name="AnneBabaBirlikte" id="AnneBabaBirlikte" value="Hayır">
+                                            Hayır
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="AnneMeslegi">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label>Annenizin Geliri<small>*</small></label>
+                                            <input asp-for="Kullanici.AnneGelir" name="AnneGelir" type="text" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Annenizin  Mesleği <small>*</small></label>
+                                            @*<select asp-for="Kullanici.SehirId" asp-items="Sehir"></select>*@
+                                            <select asp-for="Kullanici.AnneMeslekID" name="AnneMeslekID"
+                                                    class="form-control"
+                                                    asp-items="@(new SelectList(Model.Meslek,"Id","Ad"))">
+                                                <option value="null">Lütfen Annenizin Mesleğini Seçiniz</option>
+                                            </select>
+                                            <span asp-validation-for="Kullanici.AnneMeslekID" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="BabaMeslegi">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label>Babanızın Geliri<small>*</small></label>
+                                            <input asp-for="Kullanici.BabaGelir" name="BabaGelir" type="text" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Babanızın  Mesleği <small>*</small></label>
+                                            @*<select asp-for="Kullanici.SehirId" asp-items="Sehir"></select>*@
+                                            <select asp-for="Kullanici.BabamMeslekID" name="BabamMeslekID"
+                                                    class="form-control"
+                                                    asp-items="@(new SelectList(Model.Meslek,"Id","Ad"))">
+                                                <option value="null">Lütfen Babanızın Mesleğini Seçiniz</option>
+                                            </select>
+                                            <span asp-validation-for="Kullanici.BabamMeslekID" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>ANNENİZ VE BABANIZ HAYATTA DEĞİL İSE, SİZE BAKMAKLA YÜKÜMLÜ OLAN KİŞİLERİN YAKINLIK DERECESİ :<small>*</small></label>
+                                    <textarea asp-for="Kullanici.AkrabaDereceGelir" name="AkrabaDereceGelir" class="form-control" rows="5"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Geliriniz (Lütfen Ailenizin Gelir Miktarınız Yazınız) Mülakatlarda Gelir Beyanı istenecektir.<small>*</small></label>
+                                    <input asp-for="Kullanici.Gelir" name="Gelir" type="number" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Aileniz Kiradamı yoksa Ev Sahibi mi?<small>*</small></label>
+                                    <div class="radio mt-20">
+                                        <label>
+                                            <input type="radio" asp-for="Kullanici.EvKirami" name="EvKirami" id="EvKirami" value="Kira" Onclick="KiraGoster()">
+                                            Kira
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" asp-for="Kullanici.EvKirami" name="EvKirami" id="EvKirami" value="EvSahibi" Onclick="KiraGizle()">
+                                            Ev Sahibi
+                                        </label>
+                                    </div>
+                                    <span asp-validation-for="@Model.Kullanici.EvKirami" class="text-danger"></span>
+                                </div>
+                                <div id="EvKiraPanel">
+                                    <div class="form-group">
+                                        <label>AİLENİZİ İKAMET ETTİĞİ EVİN KİRA ÜCRETİ NEDİR:<small>*</small></label>
+                                        <input asp-for="Kullanici.EvKiraUcreti" name="EvKiraUcreti" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>AİLENİZİN SAHİP OLDUĞU GAYRİMENKULLER :<small>*</small></label>
+                                    <textarea asp-for="Kullanici.AileGayriMenkul" name="AileGayriMenkul" class="form-control" rows="5"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Kardeşiniz Varmı?<small>*</small></label>
+                                    <div class="radio mt-20">
+                                        <label>
+                                            <input type="radio" asp-for="Kullanici.KardesVarYok" name="KardesVarYok" id="KardesVarYok" value="Evet" Onclick="KardesIsOkulGoster()">
+                                            Evet
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" asp-for="Kullanici.KardesVarYok" name="KardesVarYok" id="KardesVarYok" value="Hayır" Onclick="KardesIsOkulGizle()">
+                                            Hayır
+                                        </label>
+                                    </div>
+                                    <span asp-validation-for="@Model.Kullanici.KardesVarYok" class="text-danger"></span>
+                                </div>
+                                <div id="KardesSayisi">
+                                    <div class="form-group">
+                                        <label>SİZ HARİÇ KARDEŞ SAYISINI BELİRTİNİZ:<small>*</small></label>
+                                        <input asp-for="Kullanici.KardesSayisi" name="KardesSayisi" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div id="KardesIsOkul">
+                                    <div class="form-group">
+                                        <label>KARDEŞLERİNİZİN ÖĞRENİM DURUMLARI ve ÇALIŞMA DURUMLARI :<small>*</small></label>
+                                        <textarea asp-for="Kullanici.KardesIsOkul" name="KardesIsOkul" class="form-control" rows="5"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>VARSA SİZE İZ-BURS'U TAVSİYE EDEN KİŞİNİN ADI SOYADI :<small>*</small></label>
+                                    <textarea asp-for="Kullanici.TavsiyeEdenKisi" name="TavsiyeEdenKisi" class="form-control" rows="5"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>HAKKINIZDA BİLGİ ALABİLECEĞİMİZ DİĞER KİŞİLER VE TELEFON NUMARALARI :<small>*</small></label>
+                                    <textarea asp-for="Kullanici.BilgiKisiveTelefon" name="BilgiKisiveTelefon" class="form-control" rows="5"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>BELİRTMEK İSTEDİĞİNİZ DİĞER BİLGİLER :<small>*</small></label>
+                                    <textarea asp-for="Kullanici.DigerBilgiler" name="DigerBilgiler" class="form-control" rows="5" placeholder="BU BÖLÜM SEÇİLMENİZ ADINA ÖNEMLİDİR. Varsa özel durum, bu burs ile ne yapmayı planlıyorsunuz vb. Bilgilerini lütfen Doldurunuz.."></textarea>
+                                </div>
+                                @*<div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Sex <small>*</small></label>
+                    <select name="form_sex" class="form-control required">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Job Post <small>*</small></label>
+                    <select name="form_post" class="form-control required">
+                        <option value="Finance Manager">Finance Manager</option>
+                        <option value="Area Manager">Area Manager</option>
+                        <option value="Country Manager">Country Manager</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Message <small>*</small></label>
+            <textarea name="form_message" class="form-control required" rows="5" placeholder="Your cover letter/message sent to the employer"></textarea>
+        </div>
+        <div class="form-group">
+            <label>C/V Upload</label>
+            <input name="form_attachment" class="file" type="file" multiple data-show-upload="false" data-show-caption="true">
+            <small>Maximum upload file size: 12 MB</small>
+        </div>*@
+                                <div class="form-group">
+                                    <input name="form_botcheck" class="form-control" type="hidden" value="" />
+                                    <button type="submit" class="btn btn-block btn-dark btn-theme-colored btn-sm mt-20 pt-10 pb-10" data-loading-text="Please wait...">BAŞVURUYU GÖNDER</button>
+                                </div>
+                            </form>
+                            @section Javascript{
+
+                                <script src="~/jqueryValid/jquery.validate.min.js"></script>
+                                <script src="~/jqueryUnob/jquery.validate.unobtrusive.min.js"></script>
+                            }
+                        </div>
+                        <!-- Job Form Validation-->
+                        @*<script type="text/javascript">
+                            $("#job_apply_form").validate({
+                                submitHandler: function (form) {
+                                    var form_btn = $(form).find('button[type="submit"]');
+                                    var form_result_div = '#form-result';
+                                    $(form_result_div).remove();
+                                    form_btn.before('<div id="form-result" class="alert alert-success" role="alert" style="display: none;"></div>');
+                                    var form_btn_old_msg = form_btn.html();
+                                    form_btn.html(form_btn.prop('disabled', true).data("loading-text"));
+                                    $(form).ajaxSubmit({
+                                        dataType: 'json',
+                                        success: function (data) {
+                                            if (data.status == 'true') {
+                                                $(form).find('.form-control').val('');
+                                            }
+                                            form_btn.prop('disabled', false).html(form_btn_old_msg);
+                                            $(form_result_div).html(data.message).fadeIn('slow');
+                                            setTimeout(function () { $(form_result_div).fadeOut('slow') }, 6000);
+                                        }
+                                    });
+                                }
+                            });
+                        </script>*@
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

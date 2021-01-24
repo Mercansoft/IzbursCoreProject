@@ -1,0 +1,34 @@
+﻿@model List<Gorus>
+    <!-- Divider: testimonials -->
+    <section class="divider parallax layer-overlay overlay-theme-colored-9" data-background-ratio="0.5" data-bg-img="/Shared/images/bg/bg2.jpg">
+        <div class="container pb-50">
+            <div class="section-title">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 class="font-weight-300 m-0 text-gray-lightgray">MUTLU ÖĞRENCİLER</h5>
+                        <h2 class="mt-0 mb-0 text-uppercase line-bottom text-white font-28">ÖĞRENCİ GÖRÜŞLERİ<span class="font-30 text-theme-color-2">.</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-10">
+                    <div class="owl-carousel-2col boxed" data-dots="true">
+                        @foreach (var item in Model)
+                        {
+                            <div class="item">
+                                <div class="testimonial pt-10">
+                                    <div class="thumb pull-left mb-0 mr-0 pr-20">
+                                        <img width="75" height="150" class="img-circle" alt="" src="@item.Kullanici.Resim">
+                                    </div>
+                                    <div class="ml-100 ">
+                                        <h4 class="text-white mt-0">@item.Aciklama</h4>
+                                        <p class="author mt-20">- <span class="text-theme-color-2">@item.Kullanici.Okul.Ad,</span> <small><em class="text-gray-lightgray">@item.Kullanici.Bolum.Ad</em></small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 

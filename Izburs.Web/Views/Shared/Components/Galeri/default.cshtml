@@ -1,0 +1,44 @@
+﻿@model List<Galeri> 
+<!-- Section: Gallery -->
+<section id="gallery" class="bg-lighter">
+    <div class="container">
+        <div class="section-title mb-10">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="mt-0 text-uppercase text-theme-colored title line-bottom line-height-1">İZBURS<span class="text-theme-color-2 font-weight-400"> GALERİMİZ</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Portfolio Gallery Grid -->
+                    <div id="grid" class="gallery-isotope grid-4 gutter clearfix">
+                  
+                        @foreach (var item in Model)
+                        {
+                            <!-- Portfolio Item Start -->
+                            <div class="gallery-item select1">
+                                <div class="thumb">
+                                    <img class="img-fullwidth" src="@item.Resim" alt="project">
+                                    <div class="overlay-shade"></div>
+                                    <div class="icons-holder">
+                                        <div class="icons-holder-inner">
+                                            <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                                                <a data-lightbox="image" href="@item.Resim"><i class="fa fa-plus"></i></a>
+                                                <a href="/Galeri/Goster/@item.Id"><i class="fa fa-link"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a class="hover-link" data-lightbox="image" href="@item.Resim">View more</a>
+                                </div>
+                            </div>
+                            <!-- Portfolio Item End -->
+                        }
+                    </div>
+                    <!-- End Portfolio Gallery Grid -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
