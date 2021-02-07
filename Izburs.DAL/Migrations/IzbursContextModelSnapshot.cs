@@ -30,9 +30,15 @@ namespace Izburs.DAL.Migrations
                     b.Property<string>("AdSoyad")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("BankaAdi")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DogumTarihi")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -40,6 +46,9 @@ namespace Izburs.DAL.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Iban")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -64,7 +73,13 @@ namespace Izburs.DAL.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Resim")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TcNo")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -748,8 +763,8 @@ namespace Izburs.DAL.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("AppUserId")
-                        .HasColumnType("int");
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("BasvuruId")
                         .HasColumnType("int");
@@ -867,6 +882,9 @@ namespace Izburs.DAL.Migrations
 
                     b.Property<DateTime>("KayitTarihi")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Resim")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

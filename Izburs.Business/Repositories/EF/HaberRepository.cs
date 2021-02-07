@@ -23,5 +23,12 @@ namespace Izburs.Business.Repositories.EF
             //return View(grp.Select(null).OrderByDescending(x=>x.Id).Take(12).ToList());
             return haber;
         }
+        public List<Haber> Liste()
+        {
+            using IzbursContext db = new IzbursContext();
+            var haber = db.Haber.Include(x => x.HaberKat).ToList();
+            //haber.Yorumlar = db.Yorum.Where(x => x.HaberId == id).ToList();
+            return haber;
+        }
     }
 }

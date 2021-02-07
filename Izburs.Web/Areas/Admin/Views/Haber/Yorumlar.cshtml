@@ -1,0 +1,154 @@
+﻿@model IEnumerable<Yorum>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnOnayla").click(function () {
+            var ID = $(this).data("id");
+            $.ajax({
+                url: '/Admin/Haber/Onayla/' + ID,
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    if (data == "ok") {
+                        $("#durum").html("Yorum Onaylanmıştır.");
+                    } else {
+                        $("#durum").html("Hata");
+                    }
+                }
+            })
+        })
+        $("#btnSil").click(function () {
+            var silID = $(this).data("id");
+            $.ajax({
+                url: '/Admin/Haber/YorumSil/' + silID,
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    if (data == "ok") {
+                        $("#durum").html("Yorum Silinmiştir.");
+                    } else {
+                        $("#durum").html("Hata");
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+<div class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+
+                <!-- Main-body start -->
+                <div class="main-body">
+                    <div class="page-wrapper">
+
+                        <!-- Page-header start -->
+                        <div class="page-header">
+                            <div class="page-header-title">
+                            </div>
+                            <div class="page-header-breadcrumb">
+                                <ul class="breadcrumb-title">
+                                    <li class="breadcrumb-item">
+                                        <a href="index.html">
+                                            <i class="icofont icofont-home"></i>
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="#!">İçerik İşlemleri</a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="#!">Haber Yönetimi</a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="#!">Yorum Listesi</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p id="durum">
+
+                        </p>
+                        <!-- Page-header end -->
+                        <!-- Page-body start -->
+                        <div class="page-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <!-- HTML5 Export Buttons table start -->
+                                    <div class="card">
+                                        <div class="card-header table-card-header">
+                                            <h5>YORUM LİSTESİ</h5>
+                                            <div class="card-header-right">
+                                                <i class="icofont icofont-rounded-down"></i>
+                                                <i class="icofont icofont-refresh"></i>
+                                                <i class="icofont icofont-close-circled"></i>
+                                            </div>
+                                        </div>
+                                        <div class="card-block">
+                                            <div class="dt-responsive table-responsive">
+                                                <table id="basic-btn" class="table table-striped table-bordered nowrap">
+                                                    <thead>
+                                                        <tr>
+                                                            <th># ID</th>
+                                                            <th>AdSoyad</th>
+                                                            <th>Mesah</th>
+                                                            <th>Haber</th>
+                                                            <th>Yorum Tarihi</th>
+                                                            <th>İşlem</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var item in Model)
+                                                        {
+                                                            <tr>
+                                                                <td>@item.Id</td>
+                                                                <td>@item.AdSoyad</td>
+                                                                <td>@item.Mesaj</td>
+                                                                <td>@item.Haber.Baslik</td>
+                                                                <td>@item.KayitTarihi.ToShortDateString()</td>
+                                                                <td>
+
+                                                                    @if (item.Durum)
+                                                                    {
+                                                                        <button type="submit" id="btnOnayla" data-id="@item.Id" class="btn btn-success"><i class="icofont icofont-check-circled"></i>Onayla</button>
+                                                                        @*<button type="button" class="btn btn-success waves-effect" data-toggle="modal" data-target="#small-Modal">Small</button>*@
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <button type="submit" id="btnSil" data-id="@item.Id" class="btn btn-danger" data-toggle="modal" data-target="#small-Modal2"><i class="icofont icofont-check-circled"></i>Sil</button>
+
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                        }
+
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th># ID</th>
+                                                            <th>AdSoyad</th>
+                                                            <th>Mesah</th>
+                                                            <th>Haber</th>
+                                                            <th>Yorum Tarihi</th>
+                                                            <th>İşlem</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Page-body end -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Main-body end -->
+                <div id="styleSelector">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -13,6 +13,6 @@ namespace Izburs.DAL.Entities
         public int Id { get; set; }
         public int BasvuruId { get; set; }
         public Basvuru Basvuru { get; set; }
-        public int AppUserId { get; set; }
+        public string AppUserId { get; set; }
     }
 }

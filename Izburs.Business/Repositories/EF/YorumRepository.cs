@@ -16,5 +16,12 @@ namespace Izburs.Business.Repositories.EF
             using IzbursContext db = new IzbursContext();
             return db.Yorum.Where(x => x.HaberId == haberId&x.Durum==false).AsNoTracking().ToList();
         }
+        public List<Yorum> Liste()
+        {
+            using IzbursContext db = new IzbursContext();
+            var haber = db.Yorum.OrderByDescending(x=>x.Durum).Include(x => x.Haber).ToList();
+            //haber.Yorumlar = db.Yorum.Where(x => x.HaberId == id).ToList();
+            return haber;
+        }
     }
 }

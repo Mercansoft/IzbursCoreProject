@@ -1,9 +1,11 @@
 ﻿using Izburs.Business.Repositories.EF;
 using Izburs.Business.Tuple;
 using Izburs.DAL.Entities;
+using Izburs.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -15,9 +17,16 @@ namespace Izburs.Web.Controllers
 {
     public class BasvuruController : Controller
     {
+        UserManager<AppUser> userManager;
+        RoleManager<IdentityRole> roleManager;
         ////string TamYolYeri = "";
         //private readonly IHostingEnvironment _environment;
         //public BasvuruController(IHostingEnvironment environment) { _environment = environment; }
+        public BasvuruController(UserManager<AppUser> _userManager, RoleManager<IdentityRole> _roleManager)
+        {
+            userManager = _userManager;
+            roleManager = _roleManager;
+        }
         public BasvuruViewModel GetData()
         {
             BasvuruViewModel model = new BasvuruViewModel();
@@ -38,11 +47,51 @@ namespace Izburs.Web.Controllers
 
             return View(GetData());
         }
+        private bool OgrenciOlustur(string email,string adsoyad,string tel,DateTime dogumtarih,string resim)
+        {
+
+            try
+            {
+                AppUser user = new AppUser
+                {
+                    UserName = email,
+                    AdSoyad = adsoyad,
+                    Email = email,
+                    PhoneNumber = tel,
+                    BankaAdi = "",
+                    DogumTarihi = Convert.ToDateTime(dogumtarih),
+                    Iban = "",
+                    Resim = resim
+                };
+                if (userManager.FindByNameAsync(email).Result == null)
+                {
+                    var identityResult = userManager.CreateAsync(user, SifreOlustur.SifreUret(6,false)).Result;
+                }
+                if (roleManager.FindByNameAsync(email).Result == null)
+                {
+                    IdentityRole role = new IdentityRole
+                    {
+                        Name = "Öğrenci"
+                    };
+                    var varmi = roleManager.RoleExistsAsync(role.Name.ToString());
+                    if (!varmi.Result)
+                    {
+                        var IdentityResult = roleManager.CreateAsync(role).Result;
+                    }
+                    var result = userManager.AddToRoleAsync(user, role.Name);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Index(Basvuru model, IFormCollection form, IFormFile Resim)
         {
-            
+            OgrenciBasvuruRepository ogbasdb = new OgrenciBasvuruRepository();
             BasvuruRepository kdb = new BasvuruRepository();
             DonemRepository ddb = new DonemRepository();
 
@@ -220,6 +269,31 @@ namespace Izburs.Web.Controllers
                 bool durum =kdb.Ekle(model);
                 if (durum)
                 {
+                    AppUser ogrenci = userManager.FindByNameAsync(model.Email).Result;
+                    if (ogrenci==null)
+                    {
+                        OgrenciOlustur(model.Email, model.Ad + " " + model.Soyad, model.Telefon, model.DogumTarihi, model.Resim);
+                        AppUser ogrenci2 = userManager.FindByNameAsync(model.Email).Result;
+                        OgrenciBasvuru ogrb = new OgrenciBasvuru
+                        {
+                            AppUserId = ogrenci2.Id,
+                            BasvuruId = model.Id
+
+                        };
+                        ogbasdb.Ekle(ogrb);
+                    }
+                    else
+                    {
+                        
+                        OgrenciBasvuru ogrb = new OgrenciBasvuru
+                        {
+                            AppUserId = ogrenci.Id,
+                            BasvuruId = model.Id
+
+                        };
+                        ogbasdb.Ekle(ogrb);
+                    }
+
                     return Redirect("/Basvuru/Durum");
                 }
             }
@@ -264,8 +338,6 @@ namespace Izburs.Web.Controllers
         {
             return View();
         }
-
-
         //public async Task<IActionResult> _fncResimYukle(IFormFile Getfile)
         //{
         //    string fileName = Guid.NewGuid().ToString();

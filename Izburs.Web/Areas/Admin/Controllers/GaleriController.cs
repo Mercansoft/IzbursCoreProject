@@ -82,7 +82,7 @@ namespace Izburs.Web.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult KatEkle(GaleriKat model, IFormFile Resim)
+        public IActionResult Kategori(GaleriKat model, IFormFile Resim)
         {
             model.Resim = "s";
             if (ModelState.IsValid)
@@ -102,7 +102,7 @@ namespace Izburs.Web.Areas.Admin.Controllers
 
                 }
             }
-            return RedirectToAction("Kategori", "Galeri", model);
+            return View(model);
         }
     }
 }

@@ -17,10 +17,11 @@ namespace Izburs.Web.Areas.Admin.Controllers
     {
         HaberRepository db = new HaberRepository();
         HaberKatRepository dbkat = new HaberKatRepository();
+        YorumRepository yorumdb = new YorumRepository();
         FileUpload upload = new FileUpload();
         public IActionResult Index()
         {
-            return View();
+            return View(db.Liste());
         }
         public IActionResult Ekle()
         {
@@ -52,6 +53,53 @@ namespace Izburs.Web.Areas.Admin.Controllers
                 }
             }
             return View(model);
+        }
+        [HttpPost]
+        public IActionResult Sil(int id)
+        {
+            var data = db.GetirIdile(id);
+            bool durum = db.Sil(data);
+            if (durum)
+            {
+                return Json("ok");
+            }
+            else
+            {
+                return Json("no");
+            }
+        }
+        [HttpPost]
+        public IActionResult YorumSil(int id)
+        {
+            var data = yorumdb.GetirIdile(id);
+            bool durum = yorumdb.Sil(data);
+            if (durum)
+            {
+                return Json("ok");
+            }
+            else
+            {
+                return Json("no");
+            }
+        }
+        public IActionResult Yorumlar()
+        {
+            return View(yorumdb.Liste());
+        }
+        [HttpPost]
+        public IActionResult Onayla(int id)
+        {
+            var data = yorumdb.GetirIdile(id);
+            data.Durum = false;
+            bool durum = yorumdb.Guncelle(data);
+            if (durum)
+            {
+                return Json("ok");
+            }
+            else
+            {
+                return Json("no");
+            }
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Izburs.Web.Areas.Admin.Controllers
         FileUpload upload = new FileUpload();
         public IActionResult Index()
         {
-            return View();
+            return View(db.GetirHepsi());
         }
         public IActionResult Ekle()
         {
@@ -49,6 +49,38 @@ namespace Izburs.Web.Areas.Admin.Controllers
                 }
             }
             return View(model);
+        }
+        public IActionResult Duzenle(int id)
+        {
+
+            return View(db.GetirIdile(id));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Duzenle(Sayfa model, IFormFile Resim)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = upload._fncResimYukleAsync(Resim);
+                model.Resim = result.Result;
+                model.GuncellemeTarihi = Convert.ToDateTime(DateTime.Now);
+                db.Guncelle(model);
+            }
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult Sil(int id)
+        {
+            var data = db.GetirIdile(id);
+           bool durum= db.Sil(data);
+            if (durum)
+            {
+                return Json("ok");
+            }
+            else
+            {
+                return Json("no");
+            }
         }
     }
 }

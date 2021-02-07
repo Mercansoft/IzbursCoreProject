@@ -62,7 +62,11 @@
                                                         {
                                                         <tr>
                                                             <td>@item.Ad</td>
-                                                            <td><img src="@item.Resim" height="75" width="150" /></td>
+                                                            <td>
+                                                                <a href="@item.Resim" data-toggle="lightbox" data-title="@item.Ad">
+                                                                    <img src="@item.Resim" class="img-fluid" alt="@item.Ad" height="75" width="150">
+                                                                </a>
+                                                            </td>
                                                             <td>@item.KayitTarihi.ToShortDateString()</td>
                                                             <td>@item.GuncellemeTarihi.ToShortDateString()</td>
                                                             <td>
