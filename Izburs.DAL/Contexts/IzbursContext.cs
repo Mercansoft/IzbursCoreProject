@@ -12,7 +12,7 @@ namespace Izburs.DAL.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("server=localhost;" +
-                "database=IzbursCore2; user id=sa; password=@Yzq1w2e3;");
+                "database=IzbursCore2; user id=sa; password=heyyoo;");
 
             //IdentityCore dan sonra aşağıdaki kodu ekliyoruz
             base.OnConfiguring(optionsBuilder);
