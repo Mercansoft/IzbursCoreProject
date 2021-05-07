@@ -1,0 +1,175 @@
+﻿@model Haber
+<div class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+
+                <!-- Main-body start -->
+                <div class="main-body">
+                    <div class="page-wrapper">
+                        <!-- Page header start -->
+                        <div class="page-header">
+                            <div class="page-header-title">
+                                <h4>Haber Düzenle</h4>
+                                @*<span>Lorem ipsum dolor sit <code>amet</code>, consectetur adipisicing elit</span>*@
+                            </div>
+                            <div class="page-header-breadcrumb">
+                                <ul class="breadcrumb-title">
+                                    <li class="breadcrumb-item">
+                                        <a href="index.html">
+                                            <i class="icofont icofont-home"></i>
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="#!">İçerik Yönetimi</a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="#!">Haber Düzenle</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        @ViewBag.Durum
+                        <!-- Page header end -->
+                        <!-- Page body start -->
+                        <div class="page-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <!-- Basic Form Inputs card start -->
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Haber Düzenleme Paneli</h5>
+                                            @*<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>*@
+                                            <div class="card-header-right">
+                                                <i class="icofont icofont-rounded-down"></i>
+                                                <i class="icofont icofont-refresh"></i>
+                                                <i class="icofont icofont-close-circled"></i>
+                                            </div>
+                                        </div>
+                                        <div class="card-block">
+                                            @*<h4 class="sub-title">Basic Inputs</h4>*@
+                                            <form asp-action="Duzenle" asp-controller="Haber" asp-area="Admin" method="post" enctype="multipart/form-data">
+                                                <input type="hidden" asp-for="Id" />
+                                                @*<div asp-validation-summary="All" class="text-danger"></div>*@
+
+                                                @{
+                                                    if (Model != null)
+                                                    {
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label">Mevcut Resim</label>
+                                                            <div class="col-sm-10">
+                                                                <a href="@Model.Resim" data-toggle="lightbox" data-title="@Model.Baslik">
+                                                                    <img src="@Model.Resim" class="img-fluid" alt="@Model.Baslik" height="150" width="200">
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                }
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Haber Resmi</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="file" class="form-control" asp-for="Resim" name="Resim">
+                                                        <span asp-validation-for="Resim" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Haber Başlığı</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" asp-for="Baslik" name="Baslik" value="@Model.Baslik">
+                                                        <span asp-validation-for="Baslik" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Haber Kategorisi</label>
+                                                    <div class="col-sm-10">
+                                                        @*<div class="col-sm-12 col-xl-4 m-b-30">*@
+                                                        <select class="js-example-disabled-results col-sm-12" asp-for="HaberKatId" name="HaberKatId">
+                                                            @foreach (var item in (List<HaberKat>)ViewBag.Kat)
+                                                            {
+                                                                if (item.Id == Model.HaberKatId)
+                                                                {
+                                                                    <option selected value="@item.Id">@item.Ad</option>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <option value="@item.Id">@item.Ad</option>
+                                                                }
+
+                                                            }
+                                                        </select>
+                                                        @*</div>*@
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">İçerik</label>
+                                                    <div class="col-sm-10">
+                                                        <textarea id="Icerik" asp-for="Icerik" name="Icerik" rows="20" cols="10">@Model.Icerik</textarea>
+                                                        <script>
+                                                            ClassicEditor
+                                                                .create(document.querySelector('#Icerik'), {
+                                                                    //plugins: [... ,ImageInsert],
+                                                                    //toolbar: [... ,'imageInsert']
+                                                                })
+                                                                .then(editor => {
+                                                                    console.log(editor);
+                                                                })
+                                                                .catch(error => {
+                                                                    console.error(error);
+                                                                });
+                                                        </script>
+                                                        <span asp-validation-for="Icerik" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10">
+                                                        <button class="btn btn-success btn-square" type="submit">GÖNDER</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Page body end -->
+                    </div>
+                </div>
+                <!-- Main-body end -->
+                <div id="styleSelector">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Javascript{
+
+    <script src="~/jqueryValid/jquery.validate.min.js"></script>
+    <script src="~/jqueryUnob/jquery.validate.unobtrusive.min.js"></script>
+    <!-- light-box js -->
+    <script type="text/javascript" src="/Tasarim/bower_components/ekko-lightbox/js/ekko-lightbox.js"></script>
+    <script type="text/javascript" src="/Tasarim/bower_components/lightbox2/js/lightbox.js"></script>
+    @*<script src="/ckeditor/ckeditor.js"></script>
+    <script>
+        DecoupledEditor
+            .create(document.querySelector('#editor'), {
+                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+            })
+            .then(editor => {
+                const toolbarContainer = document.querySelector('main .toolbar-container');
+
+                toolbarContainer.prepend(editor.ui.view.toolbar.element);
+
+                window.editor = editor;
+            })
+            .catch(err => {
+                console.error(err.stack);
+            });
+    </script>*@
+}

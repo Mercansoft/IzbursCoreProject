@@ -1,0 +1,252 @@
+﻿<!-- Section: home -->
+<section id="home">
+    <div class="container-fluid p-0">
+
+@await Component.InvokeAsync("Slider") 
+    </div>
+</section>
+@await Component.InvokeAsync("HtmlIcerik")
+@await Component.InvokeAsync("Haberler") 
+
+<!-- Divider: Funfact -->
+<section class="divider parallax layer-overlay overlay-theme-colored-9" data-bg-img="images/bg/bg2.jpg" data-parallax-ratio="0.7">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                <div class="funfact text-center">
+                    <i class="pe-7s-smile mt-5 text-theme-color-2"></i>
+                    <h2 data-animation-duration="2000" data-value="5248" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+                    <h5 class="text-white text-uppercase mb-0">TOPLAM VERİLEN BURS</h5>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                <div class="funfact text-center">
+                    <i class="pe-7s-users mt-5 text-theme-color-2"></i>
+                    <h2 data-animation-duration="2000" data-value="248" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+                    <h5 class="text-white text-uppercase mb-0">BU YIL BURSLI SAYISI</h5>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                <div class="funfact text-center">
+                    <i class="pe-7s-note2 mt-5 text-theme-color-2"></i>
+                    <h2 data-animation-duration="2000" data-value="675" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+                    <h5 class="text-white text-uppercase mb-0">BU YIL BAŞVURU SAYISI</h5>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 mb-md-0">
+                <div class="funfact text-center">
+                    <i class="pe-7s-cup mt-5 text-theme-color-2"></i>
+                    <h2 data-animation-duration="2000" data-value="24" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+                    <h5 class="text-white text-uppercase mb-0">TOPLAM BAŞVURU</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section: team -->
+@*<section>
+    <div class="container">
+        <div class="section-title mb-10">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1">İZBURS <span class="text-theme-color-2 font-weight-400">EKİBİ</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="section-content">
+            <div class="row multi-row-clearfix">
+                <div class="col-sm-6 col-md-3 sm-text-center mb-sm-30">
+                    <div class="team maxwidth400">
+                        <div class="thumb"><img class="img-fullwidth" src="/Shared/images/team/team5.jpg" alt=""></div>
+                        <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
+                            <h4 class="name text-theme-color-2 mt-0">GAYE BAYKU - <small>BAŞKAN</small></h4>
+                            <p class="mb-20">Lorem ipsum dolor sit amet, con amit sectetur adipisicing elit.</p>
+                            <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                            <a class="btn btn-theme-colored btn-sm pull-right flip" href="page-teachers-details.html">view details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 sm-text-center mb-sm-30">
+                    <div class="team maxwidth400">
+                        <div class="thumb"><img class="img-fullwidth" src="/Shared/images/team/team6.jpg" alt=""></div>
+                        <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
+                            <h4 class="name mt-0 text-theme-color-2">ÇİĞDEM SOYBELLİ- <small>BAŞKAN YRD</small></h4>
+                            <p class="mb-20">Lorem ipsum dolor sit amet, con amit sectetur adipisicing elit.</p>
+                            <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                            <a class="btn btn-theme-colored btn-sm pull-right flip" href="page-teachers-details.html">view details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 sm-text-center mb-sm-30">
+                    <div class="team maxwidth400">
+                        <div class="thumb"><img class="img-fullwidth" src="/Shared/images/team/team7.jpg" alt=""></div>
+                        <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
+                            <h4 class="name mt-0 text-theme-color-2">YAVUZ MERCAN - <small>SEKRETER</small></h4>
+                            <p class="mb-20">Lorem ipsum dolor sit amet, con amit sectetur adipisicing elit.</p>
+                            <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                            <a class="btn btn-theme-colored btn-sm pull-right flip" href="page-teachers-details.html">view details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 sm-text-center">
+                    <div class="team maxwidth400">
+                        <div class="thumb"><img class="img-fullwidth" src="/Shared/images/team/team8.jpg" alt=""></div>
+                        <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
+                            <h4 class="name mt-0 text-theme-color-2">MERT PATKAVAK - <small>ÜYE</small></h4>
+                            <p class="mb-20">Lorem ipsum dolor sit amet, con amit sectetur adipisicing elit.</p>
+                            <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                            <a class="btn btn-theme-colored btn-sm pull-right flip" href="page-teachers-details.html">view details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 sm-text-center mb-sm-30">
+                    <div class="team maxwidth400">
+                        <div class="thumb"><img class="img-fullwidth" src="/Shared/images/team/team8.jpg" alt=""></div>
+                        <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
+                            <h4 class="name mt-0 text-theme-color-2">MANOLYA CEYLAN - <small>ÜYE</small></h4>
+                            <p class="mb-20">Lorem ipsum dolor sit amet, con amit sectetur adipisicing elit.</p>
+                            <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                            <a class="btn btn-theme-colored btn-sm pull-right flip" href="page-teachers-details.html">view details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 sm-text-center mb-sm-30">
+                    <div class="team maxwidth400">
+                        <div class="thumb"><img class="img-fullwidth" src="/Shared/images/team/team8.jpg" alt=""></div>
+                        <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
+                            <h4 class="name mt-0 text-theme-color-2">ÇAĞRI AGİN - <small>ÜYE</small></h4>
+                            <p class="mb-20">Lorem ipsum dolor sit amet, con amit sectetur adipisicing elit.</p>
+                            <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                            <a class="btn btn-theme-colored btn-sm pull-right flip" href="page-teachers-details.html">view details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>*@
+
+@await Component.InvokeAsync("Galeri")
+
+<!-- Section: Why Choose Us -->
+@*<section id="event" class="">
+    <div class="container pb-50">
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="text-uppercase line-bottom mt-0 line-height-1"><i class="fa fa-calendar mr-10"></i>YAKLAŞAN <span class="text-theme-color-2">ETKİNLİKLER</span></h3>
+                    <article class="post media-post clearfix pb-0 mb-10">
+                        <a href="#" class="post-thumb mr-20"><img alt="" src="/Shared/images/event/1.jpg"></a>
+                        <div class="post-right">
+                            <h4 class="mt-0 mb-5"><a href="#">Upcoming Event Title</a></h4>
+                            <ul class="list-inline font-12 mb-5">
+                                <li class="pr-0"><i class="fa fa-calendar mr-5"></i> June 26, 2016 |</li>
+                                <li class="pl-5"><i class="fa fa-map-marker mr-5"></i>New York</li>
+                            </ul>
+                            <p class="mb-0 font-13">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas eveniet, nemo dicta. Ullam nam.</p>
+                            <a class="text-theme-colored font-13" href="#">Read More →</a>
+                        </div>
+                    </article>
+                    <article class="post media-post clearfix pb-0 mb-10">
+                        <a href="#" class="post-thumb mr-20"><img alt="" src="/Shared/images/event/2.jpg"></a>
+                        <div class="post-right">
+                            <h4 class="mt-0 mb-5"><a href="#">Upcoming Event Title</a></h4>
+                            <ul class="list-inline font-12 mb-5">
+                                <li class="pr-0"><i class="fa fa-calendar mr-5"></i> June 26, 2016 |</li>
+                                <li class="pl-5"><i class="fa fa-map-marker mr-5"></i>New York</li>
+                            </ul>
+                            <p class="mb-0 font-13">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas eveniet, nemo dicta. Ullam nam.</p>
+                            <a class="text-theme-colored font-13" href="#">Read More →</a>
+                        </div>
+                    </article>
+                    <article class="post media-post clearfix pb-0 mb-10">
+                        <a href="#" class="post-thumb mr-20"><img alt="" src="/Shared/images/event/3.jpg"></a>
+                        <div class="post-right">
+                            <h4 class="mt-0 mb-5"><a href="#">Upcoming Event Title</a></h4>
+                            <ul class="list-inline font-12 mb-5">
+                                <li class="pr-0"><i class="fa fa-calendar mr-5"></i> June 26, 2016 |</li>
+                                <li class="pl-5"><i class="fa fa-map-marker mr-5"></i>New York</li>
+                            </ul>
+                            <p class="mb-0 font-13">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas eveniet, nemo dicta. Ullam nam.</p>
+                            <a class="text-theme-colored font-13" href="#">Read More →</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-md-6">
+                    <h3 class="line-bottom mt-0 line-height-1">Why <span class="text-theme-color-2">Choose Us?</span></h3>
+                    <p class="mb-10">The Cweren Law Firm is a recognized leader in landlord tenant representation throughout Texas.The largest professional property.</p>
+                    <div id="accordion1" class="panel-group accordion">
+                        <div class="panel">
+                            <div class="panel-title"> <a class="active" data-parent="#accordion1" data-toggle="collapse" href="#accordion11" aria-expanded="true"> <span class="open-sub"></span> Why this Company is Best?</a> </div>
+                            <div id="accordion11" class="panel-collapse collapse in" role="tablist" aria-expanded="true">
+                                <div class="panel-content">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore impedit quae repellendus provident dolor iure poss imusven am aliquam. Officiis totam ea laborum deser unt vonsess.  iure poss imusven am aliquam</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion12" class="" aria-expanded="true"> <span class="open-sub"></span> Why this Company is Best?</a> </div>
+                            <div id="accordion12" class="panel-collapse collapse" role="tablist" aria-expanded="true">
+                                <div class="panel-content">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore impedit quae repellendus provident dolor iure poss imusven am aliquam. Officiis totam ea laborum deser unt vonsess.  iure poss imusven am aliquam</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion13" class="" aria-expanded="true"> <span class="open-sub"></span> Why this Company is Best?</a> </div>
+                            <div id="accordion13" class="panel-collapse collapse" role="tablist" aria-expanded="true">
+                                <div class="panel-content">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore impedit quae repellendus provident dolor iure poss imusven am aliquam. Officiis totam ea laborum deser unt vonsess.  iure poss imusven am aliquam</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion14" class="" aria-expanded="true"> <span class="open-sub"></span> Why this Company is Best?</a> </div>
+                            <div id="accordion14" class="panel-collapse collapse" role="tablist" aria-expanded="true">
+                                <div class="panel-content">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore impedit quae repellendus provident dolor iure poss imusven am aliquam. Officiis totam ea laborum deser unt vonsess.  iure poss imusven am aliquam</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion15" class="" aria-expanded="true"> <span class="open-sub"></span> Why this Company is Best?</a> </div>
+                            <div id="accordion15" class="panel-collapse collapse" role="tablist" aria-expanded="true">
+                                <div class="panel-content">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore impedit quae repellendus provident dolor iure poss imusven am aliquam. Officiis totam ea laborum deser unt vonsess.  iure poss imusven am aliquam</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>*@
+
+@await Component.InvokeAsync("Gorus")

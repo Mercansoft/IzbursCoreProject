@@ -85,29 +85,29 @@
                                                     <tbody>
                                                         @foreach (var item in Model)
                                                         {
-                                                            <tr>
-                                                                <td>@item.Id</td>
-                                                                <td>@item.Kullanici.Ad @item.Kullanici.Soyad</td>
-                                                                <td>@item.KayitTarihi</td>
-                                                                <td>@item.Aciklama</td>
-                                                                <td>
-                                                                    @if (item.Durum == false)
-                                                                    {
-                                                                        <button class="btn btn-success"><i class="icofont icofont-check-circled"></i> Onaylandı</button>
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        <button class="btn btn-warning"><i class="icofont icofont-warning-alt"></i> Onay Bekliyor</button>
-                                                                    }
-                                                                </td>
-                                                                <td>
-                                                                    @if (item.Durum == true)
-                                                                    {
-                                                                        @*<button type="button" class="btn btn-default btn-outline-default waves-effect md-trigger" data-modal="modal-1">Fade in &amp; Scale</button>*@
-                                                                        <button type="button" id="btnOnayla" data-id="@item.Id" class="btn btn-success btn-outline-success waves-effect md-trigger" data-modal="modal-1"><i class="icofont icofont-check-circled"></i>Onayla</button>
-                                                                    }
-                                                                </td>
-                                                            </tr>
+                                                        <tr>
+                                                            <td>@item.Id</td>
+                                                            <td>ad soyad gelecek</td>
+                                                            <td>@item.KayitTarihi</td>
+                                                            <td>@item.Aciklama</td>
+                                                            <td>
+                                                                @if (item.Durum == false)
+                                                                {
+                                                                    <button class="btn btn-success"><i class="icofont icofont-check-circled"></i> Onaylandı</button>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <button class="btn btn-warning"><i class="icofont icofont-warning-alt"></i> Onay Bekliyor</button>
+                                                                }
+                                                            </td>
+                                                            <td>
+                                                                @if (item.Durum == true)
+                                                                {
+                                                                    @*<button type="button" class="btn btn-default btn-outline-default waves-effect md-trigger" data-modal="modal-1">Fade in &amp; Scale</button>*@
+                                                                    <button type="button" id="btnOnayla" data-id="@item.Id" class="btn btn-success btn-outline-success waves-effect md-trigger" data-modal="modal-1"><i class="icofont icofont-check-circled"></i>Onayla</button>
+                                                                }
+                                                            </td>
+                                                        </tr>
                                                         }
 
 

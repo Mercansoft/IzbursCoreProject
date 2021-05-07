@@ -33,19 +33,28 @@ namespace Izburs.Web
                 //    opt.Password.RequireUppercase = false; // büyük harf
                 //    opt.Password.RequireNonAlphanumeric = false;
                 //}// alphanumeric karakterler 
-                    ).AddEntityFrameworkStores<IzbursContext>();
+                    ).AddEntityFrameworkStores<IzbursContext>()
+                    .AddDefaultTokenProviders();
+
+            // Set token life span to 5 hours
+            services.Configure<DataProtectionTokenProviderOptions>(o =>
+                o.TokenLifespan = TimeSpan.FromHours(24));
 
             services.ConfigureApplicationCookie(opt =>
             {
-                opt.LoginPath = new PathString("/Home/Giris");
+                opt.LoginPath = new PathString("/Admin/Giris");
                 opt.Cookie.Name = "IzbursNet";
                 opt.Cookie.HttpOnly = true; // bu cookie javascript ile çekilemesin.
                 opt.Cookie.SameSite = SameSiteMode.Strict; // BU COOKie bu adalan adý dýþýnda hiçbir subdomain vs. de kullanýlamaz
                 opt.ExpireTimeSpan = TimeSpan.FromDays(30);
             });
-
+           
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddSession(option =>
+            option.IdleTimeout = TimeSpan.FromSeconds(120)
+            );
+            services.AddMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +66,7 @@ namespace Izburs.Web
             }
             IdentityCreate.OlusturAdmin(user, role);
             app.UseRouting();
-
+            app.UseCookiePolicy();
             //Node Modules dýþarý açma (NPM) YÜKLEME
             //app.UseStaticFiles(new StaticFileOptions
             //{
@@ -67,7 +76,7 @@ namespace Izburs.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseSession();
             //Libman için kullaným
             app.UseStaticFiles();
 

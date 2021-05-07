@@ -61,8 +61,11 @@ namespace Izburs.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = upload._fncResimYukleAsync(Resim);
-                model.Resim = result.Result;
+                if (Resim==null)
+                {
+                    var result = upload._fncResimYukleAsync(Resim);
+                    model.Resim = result.Result;
+                }
                 model.GuncellemeTarihi = Convert.ToDateTime(DateTime.Now);
                 db.Guncelle(model);
             }

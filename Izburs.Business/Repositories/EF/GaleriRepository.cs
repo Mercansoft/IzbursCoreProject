@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace Izburs.Business.Repositories.EF
 {
@@ -19,7 +20,7 @@ namespace Izburs.Business.Repositories.EF
         public List<Galeri> GetirKatId(int KatId)
         {
             using IzbursContext db = new IzbursContext();
-            var galeri = db.Galeri.Where(x=>x.GaleriKatId==KatId).OrderByDescending(x => x.Id).ToList();
+            var galeri = db.Galeri.Where(x=>x.GaleriKatId==KatId).Include(x=>x.GaleriKat).OrderByDescending(x => x.Id).ToList();
             return galeri;
         }
     }

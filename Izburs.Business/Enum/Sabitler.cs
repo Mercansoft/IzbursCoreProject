@@ -12,7 +12,10 @@ namespace Izburs.Business.Enum
             Basarili=2,
             TranskriptBekleniyor=3,
             Basarisiz=4,
-            MezunOldu=5
+            MezunOldu=5,
+            Inceleme=6,
+            Kararsiz=7,
+            Olumlu=8
         }
     }
 }

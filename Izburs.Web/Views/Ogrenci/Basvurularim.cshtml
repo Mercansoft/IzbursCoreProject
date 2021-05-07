@@ -1,0 +1,80 @@
+﻿@model UserBasvuruViewModel
+<!-- Section: inner-header -->
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/Shared/images/bg/bg3.jpg">
+    <div class="container pt-70 pb-20">
+        <!-- Section Content -->
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="title text-white">Başvurularım</h2>
+                    <ol class="breadcrumb text-left text-black mt-10">
+                        <li><a href="/">Anasayfa</a></li>
+                        <li><a href="#">Öğrenci</a></li>
+                        <li class="active text-gray-silver">Başvurularım</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="">
+    <div class="container">
+        <div class="section-content">
+            <div class="row">
+                <div class="col-sx-12 col-sm-4 col-md-4">
+                    <div class="doctor-thumb">
+                        <img src="@Model.User.Resim" height="470" width="400" alt="">
+                    </div>
+                    <div class="info p-20 bg-black-333">
+                        <h4 class="text-uppercase text-white">@Model.User.AdSoyad</h4>
+                        <a class="btn btn-info btn-flat mt-10 mb-sm-30" href="/Ogrenci/Profil/@User.Identity.Name">Profilim</a><br />
+                        <a class="btn btn-info btn-flat mt-10 mb-sm-30" href="/Ogrenci/Transkriptlerim">Transkriptlerim</a><br />
+                        <a class="btn btn-info btn-flat mt-10 mb-sm-30" href="/Ogrenci/Goruslerim">Görüş Bildir</a><br />
+                        <a class="btn btn-info btn-flat mt-10 mb-sm-30" href="/Ogrenci/Basvurularim">Başvurularım</a><br />
+                        <a class="btn btn-danger btn-flat mt-10 mb-sm-30" href="/Ogrenci/Cikis">Çıkış</a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-8">
+                    <div>
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#orders" aria-controls="orders" role="tab" data-toggle="tab" class="font-15 text-uppercase">BAŞVURULARIM</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="orders">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th> ID</th>
+                                                <th>Başvuru Tarihi</th>
+                                                <th>Bölüm</th>
+                                                <th>Sınıf</th>
+                                                <th>Lisans Türü</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.Basvurular)
+                                            {
+                                                <tr>
+                                                    <th scope="row"># @item.Id</th>
+                                                    <td>@item.KayitTarihi.ToShortDateString()</td>
+                                                    <td>@item.Bolum.Ad</td>
+                                                    <td>@item.Sinif</td>
+                                                    <td>@item.OkulTuru.Ad</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,4 +1,9 @@
 ﻿@model List<Gorus>
+@using Izburs.Business.Repositories.EF;
+@{ 
+    AppUserRepository app = new AppUserRepository();
+    var ogrenci = app.GetirHepsi();
+}
     <!-- Divider: testimonials -->
     <section class="divider parallax layer-overlay overlay-theme-colored-9" data-background-ratio="0.5" data-bg-img="/Shared/images/bg/bg2.jpg">
         <div class="container pb-50">
@@ -15,14 +20,15 @@
                     <div class="owl-carousel-2col boxed" data-dots="true">
                         @foreach (var item in Model)
                         {
+                            var og = ogrenci.Where(X => X.Id == item.AppUserId).FirstOrDefault();
                             <div class="item">
                                 <div class="testimonial pt-10">
                                     <div class="thumb pull-left mb-0 mr-0 pr-20">
-                                        <img width="75" height="150" class="img-circle" alt="" src="@item.Kullanici.Resim">
+                                        <img class="img-fullwidth img-circle" alt="" src="@og.Resim">
                                     </div>
                                     <div class="ml-100 ">
                                         <h4 class="text-white mt-0">@item.Aciklama</h4>
-                                        <p class="author mt-20">- <span class="text-theme-color-2">@item.Kullanici.Okul.Ad,</span> <small><em class="text-gray-lightgray">@item.Kullanici.Bolum.Ad</em></small></p>
+                                        <p class="author mt-20">- <span class="text-theme-color-2">@og.AdSoyad,</span> <small><em class="text-gray-lightgray">@og.Bolum</em></small></p>
                                     </div>
                                 </div>
                             </div>

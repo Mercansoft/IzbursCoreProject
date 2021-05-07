@@ -103,14 +103,15 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-md-push-3">
-                        <div class="text-center mb-60">
+                        @*<div class="text-center mb-60">
                             <a href="#" class=""><img alt="" src="/Shared/images/logo-wide.png"></a>
-                        </div>
+                        </div>*@
                         <div class="bg-lightest border-1px p-30 mb-0">
-                            <h3 class="text-theme-colored mt-0 pt-5"> Apply Now</h3>
+                            <h3 class="text-theme-colored mt-0 pt-5"> IZBURS BAŞVURU FORMU</h3>
                             <hr>
-                            <p>Lorem ipsum dolor sit amet, consectetur elit.</p>
-                        
+                            <p>Lütfen aşağıdaki formu eksiksiz ve detaylı bir şekilde doldurunuz.</p>
+                            <p>Lütfen Yüksek Lisans ve Doktora Öğrencileri başvuru yapmasın başvuruları geçersiz sayılacaktır.</p>
+                            <p>Resimsiz Başvurular Geçersiz sayılacaktır.</p>
                             <form asp-action="Index" asp-controller="Basvuru" method="post" enctype="multipart/form-data">
                                 <div asp-validation-summary="All" class="text-danger"></div>
                                 <div class="form-group">
@@ -416,35 +417,35 @@
                                     <textarea asp-for="Kullanici.DigerBilgiler" name="DigerBilgiler" class="form-control" rows="5" placeholder="BU BÖLÜM SEÇİLMENİZ ADINA ÖNEMLİDİR. Varsa özel durum, bu burs ile ne yapmayı planlıyorsunuz vb. Bilgilerini lütfen Doldurunuz.."></textarea>
                                 </div>
                                 @*<div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label>Sex <small>*</small></label>
-                    <select name="form_sex" class="form-control required">
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                    </select>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Sex <small>*</small></label>
+                        <select name="form_sex" class="form-control required">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Job Post <small>*</small></label>
+                        <select name="form_post" class="form-control required">
+                            <option value="Finance Manager">Finance Manager</option>
+                            <option value="Area Manager">Area Manager</option>
+                            <option value="Country Manager">Country Manager</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label>Job Post <small>*</small></label>
-                    <select name="form_post" class="form-control required">
-                        <option value="Finance Manager">Finance Manager</option>
-                        <option value="Area Manager">Area Manager</option>
-                        <option value="Country Manager">Country Manager</option>
-                    </select>
-                </div>
+            <div class="form-group">
+                <label>Message <small>*</small></label>
+                <textarea name="form_message" class="form-control required" rows="5" placeholder="Your cover letter/message sent to the employer"></textarea>
             </div>
-        </div>
-        <div class="form-group">
-            <label>Message <small>*</small></label>
-            <textarea name="form_message" class="form-control required" rows="5" placeholder="Your cover letter/message sent to the employer"></textarea>
-        </div>
-        <div class="form-group">
-            <label>C/V Upload</label>
-            <input name="form_attachment" class="file" type="file" multiple data-show-upload="false" data-show-caption="true">
-            <small>Maximum upload file size: 12 MB</small>
-        </div>*@
+            <div class="form-group">
+                <label>C/V Upload</label>
+                <input name="form_attachment" class="file" type="file" multiple data-show-upload="false" data-show-caption="true">
+                <small>Maximum upload file size: 12 MB</small>
+            </div>*@
                                 <div class="form-group">
                                     <input name="form_botcheck" class="form-control" type="hidden" value="" />
                                     <button type="submit" class="btn btn-block btn-dark btn-theme-colored btn-sm mt-20 pt-10 pb-10" data-loading-text="Please wait...">BAŞVURUYU GÖNDER</button>

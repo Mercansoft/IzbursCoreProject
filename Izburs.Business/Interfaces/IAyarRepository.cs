@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Izburs.Business.Interfaces
 {
-    public interface IAyarRepository : IGenericRepository<Ayar>
+    public interface IAppUserRepository : IGenericRepository<AppUser>
     {
     }
 }

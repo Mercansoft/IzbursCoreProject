@@ -32,5 +32,25 @@ namespace Izburs.Web
                 var result=userManager.AddToRoleAsync(user, role.Name);
             }
         }
+        public static AppUser OlusturOgrenci(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, AppUser user,string Sifre)
+        {
+            AppUser ogrenci = null;
+            if (userManager.FindByNameAsync(user.Email).Result == null)
+            {
+                var IdentityResult = userManager.CreateAsync(user, Sifre).Result;
+                ogrenci = userManager.FindByNameAsync(user.Email).Result;
+            }
+            if (roleManager.FindByNameAsync(user.Email).Result == null)
+            {
+                IdentityRole role = new IdentityRole
+                {
+                    Name = "Öğrenci"
+                };
+                var IdentityResult = roleManager.CreateAsync(role).Result;
+                var result = userManager.AddToRoleAsync(user, role.Name);
+                
+            }
+            return ogrenci;
+        }
     }
 }

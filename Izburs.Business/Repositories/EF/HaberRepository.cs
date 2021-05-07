@@ -16,6 +16,13 @@ namespace Izburs.Business.Repositories.EF
             //haber.Yorumlar = db.Yorum.Where(x => x.HaberId == id).ToList();
             return haber;
         }
+        public List<Haber> GetirKatId(int KatId)
+        {
+            using IzbursContext db = new IzbursContext();
+            var haber = db.Haber.Where(x => x.HaberKatId == KatId & x.Durum == true).Include(x => x.Yorumlar).Include(x => x.HaberKat).ToList();
+            //haber.Yorumlar = db.Yorum.Where(x => x.HaberId == id).ToList();
+            return haber;
+        }
         public List<Haber> CokOkunanHaber(int Adet)
         {
             using IzbursContext db = new IzbursContext();

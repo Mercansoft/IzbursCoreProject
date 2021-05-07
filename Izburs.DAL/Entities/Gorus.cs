@@ -8,8 +8,6 @@ namespace Izburs.DAL.Entities
     [Table("Gorus")]
     public class Gorus:BaseEntity
     {
-        public int KullaniciId { get; set; }
-        public Kullanici Kullanici { get; set; }
-        public string Aciklama { get; set; }
+        public string AppUserId { get; set; }
     }
 }

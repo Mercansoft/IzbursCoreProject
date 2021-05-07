@@ -9,5 +9,6 @@ namespace Izburs.DAL.Entities
     public class Ayar:BaseEntity
     {
         public string Html { get; set; }
+        public bool BasvuruForm { get; set; }
     }
 }

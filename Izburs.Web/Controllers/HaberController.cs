@@ -12,7 +12,7 @@ namespace Izburs.Web.Controllers
         YorumRepository yrp = new YorumRepository();
         public IActionResult Index()
         {
-            return View();
+            return View(hrp.GetirKatId(1));
         }
         //[HttpGet("haber/{id}/{title}", Name = "Oku")]
         public IActionResult Oku(int id)
@@ -58,6 +58,10 @@ namespace Izburs.Web.Controllers
 
             }
             
+        }
+        public IActionResult Etkinlik()
+        {
+            return View(hrp.GetirKatId(2));
         }
     }
 }

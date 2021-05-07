@@ -1,4 +1,5 @@
-﻿ <!-- Header -->
+﻿
+    <!-- Header -->
 <header id="header" class="header">
     <div class="header-top bg-theme-color-2 sm-text-center p-0">
         <div class="container">
@@ -7,75 +8,44 @@
                     <div class="widget no-border m-0">
                         <ul class="list-inline font-13 sm-text-center mt-5">
                             <li>
-                                <a class="text-white" href="#">Sık Sorulan Sorular</a>
+                                <a class="text-white" href="/SSS/">Sık Sorulan Sorular</a>
                             </li>
                             <li class="text-white">|</li>
                             <li>
-                                <a class="text-white" href="#">Yardım</a>
+                                <a class="text-white" href="/Sayfa/Oku/3">Yardım</a>
                             </li>
-                            <li class="text-white">|</li>
-                            <li>
-                                <a class="text-white" href="#">Öğrenci Girişi</a>
-                            </li>
+
+                            @if (User.Identity.Name == null)
+                            {
+                                <li class="text-white">|</li>
+                                <li>
+                                    <a class="text-white" href="/Ogrenci/Giris">Öğrenci Girişi</a>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-8">
                     <div class="widget m-0 pull-right sm-pull-none sm-text-center">
-                        <ul class="list-inline pull-right">
-                            <li class="mb-0 pb-0">
-                                <div class="top-dropdown-outer pt-5 pb-10">
-                                    <a class="top-cart-link has-dropdown text-white text-hover-theme-colored"><i class="fa fa-shopping-cart font-13"></i> (12)</a>
-                                    <ul class="dropdown">
-                                        <li>
-                                            <!-- dropdown cart -->
-                                            <div class="dropdown-cart">
-                                                <table class="table cart-table-list table-responsive">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td><a href="#"><img alt="" src="/Shared/images/products/sm1.jpg"></a></td>
-                                                            <td><a href="#"> Product Title</a></td>
-                                                            <td>X3</td>
-                                                            <td>$ 100.00</td>
-                                                            <td><a class="close" href="#"><i class="fa fa-close font-13"></i></a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a href="#"><img alt="" src="/Shared/images/products/sm2.jpg"></a></td>
-                                                            <td><a href="#"> Product Title</a></td>
-                                                            <td>X2</td>
-                                                            <td>$ 70.00</td>
-                                                            <td><a class="close" href="#"><i class="fa fa-close font-13"></i></a></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <div class="total-cart text-right">
-                                                    <table class="table table-responsive">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>Cart Subtotal</td>
-                                                                <td>$170.00</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Shipping and Handling</td>
-                                                                <td>$20.00</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Order Total</td>
-                                                                <td>$190.00</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
+                        <ul class="list-inline pull-left">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="mb-0 pb-0">
+                                    <div class="top-dropdown-outer pt-5 pb-10">
+                                        <a href="/Ogrenci/Profil/@User.Identity.Name" class="top-cart-link has-dropdown text-white text-hover-theme-colored"><img alt="" src="/Shared/images/flat-color-icons-svg/businessman.svg" height="16" width="16" title="businessman.svg" />Hesabım</a>
+                                        <ul class="dropdown">
+                                            <li>
+                                                <div class="dropdown-cart">
+                                                    <div class="cart-btn text-right">
+                                                        <a class="btn btn-theme-colored btn-xs" href="/Ogrenci/Transkriptlerim"> Transkriptlerim</a> | <a class="btn btn-theme-colored btn-xs" href="/Ogrenci/Profil/@User.Identity.Name"> Profilim</a> | <a class="btn btn-dark btn-xs" href="/Ogrenci/Cikis">Çıkış</a>
+                                                    </div>
                                                 </div>
-                                                <div class="cart-btn text-right">
-                                                    <a class="btn btn-theme-colored btn-xs" href="shop-cart.html"> View cart</a>
-                                                    <a class="btn btn-dark btn-xs" href="shop-checkout.html"> Checkout</a>
-                                                </div>
-                                            </div>
-                                            <!-- dropdown cart ends -->
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
+                                                <!-- dropdown cart ends -->
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
                             <li class="mb-0 pb-0">
                                 <div class="top-dropdown-outer pt-5 pb-10">
                                     <a class="top-search-box has-dropdown text-white text-hover-theme-colored"><i class="fa fa-search font-13"></i> &nbsp;</a>
@@ -95,10 +65,10 @@
                     </div>
                     <div class="widget no-border m-0 mr-15 pull-right flip sm-pull-none sm-text-center">
                         <ul class="styled-icons icon-circled icon-sm pull-right flip sm-pull-none sm-text-center mt-sm-15">
-                            <li><a href="#"><i class="fa fa-facebook text-white"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter text-white"></i></a></li>
+                            <li><a href="https://www.facebook.com/izburs"><i class="fa fa-facebook text-white"></i></a></li>
+                            <li><a href="https://twitter.com/izburs"><i class="fa fa-twitter text-white"></i></a></li>
                             <li><a href="#"><i class="fa fa-google-plus text-white"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram text-white"></i></a></li>
+                            <li><a href="https://www.instagram.com/izburs_dernegi/"><i class="fa fa-instagram text-white"></i></a></li>
                             <li><a href="#"><i class="fa fa-linkedin text-white"></i></a></li>
                         </ul>
                     </div>
@@ -147,35 +117,41 @@
                 <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive">
                     <ul class="menuzord-menu">
                         <li>
-                            <a href="#home">Anasayfa</a>
+                            <a href="/">Anasayfa</a>
                         </li>
                         <li>
-                            <a href="#home">Hesap Numaramız</a>
+                            <a href="/Sayfa/Oku/1">Hesap Numaramız</a>
                         </li>
                         <li>
-                            <a href="#home">Derneğimiz</a>
+                            <a href="/Sayfa/Oku/2">Derneğimiz</a>
                         </li>
                         <li>
                             <a href="/Galeri/">Galerimiz</a>
                         </li>
                         <li>
-                            <a href="#home">Etkinliklerimiz</a>
-                            <ul class="dropdown">
-                                <li><a href="page-teachers-style1.html">Teachers style 1</a></li>
-                                <li><a href="page-teachers-style2.html">Teachers style 2</a></li>
-                                <li><a href="page-teachers-details.html">Teachers Details</a></li>
-                            </ul>
+                            <a href="/Haber/Etkinlik">Etkinliklerimiz</a>
                         </li>
+                        @*<li>
+            <a href="#home">Etkinliklerimiz</a>
+            <ul class="dropdown">
+                <li><a href="page-teachers-style1.html">Teachers style 1</a></li>
+                <li><a href="page-teachers-style2.html">Teachers style 2</a></li>
+                <li><a href="page-teachers-details.html">Teachers Details</a></li>
+            </ul>
+        </li>*@
                         <li>
-                            <a href="#home">Bizden Haberler</a>
-                            <ul class="dropdown">
-                                <li><a href="page-teachers-style1.html">Teachers style 1</a></li>
-                                <li><a href="page-teachers-style2.html">Teachers style 2</a></li>
-                                <li><a href="page-teachers-details.html">Teachers Details</a></li>
-                            </ul>
+                            <a href="/Haber/">Bizden Haberler</a>
                         </li>
+                        @*<li>
+            <a href="#home">Bizden Haberler</a>
+            <ul class="dropdown">
+                <li><a href="page-teachers-style1.html">Teachers style 1</a></li>
+                <li><a href="page-teachers-style2.html">Teachers style 2</a></li>
+                <li><a href="page-teachers-details.html">Teachers Details</a></li>
+            </ul>
+        </li>*@
                         <li>
-                            <a href="#home">İletişim</a>
+                            <a href="/Iletisim/">İletişim</a>
 
                         </li>
                     </ul>

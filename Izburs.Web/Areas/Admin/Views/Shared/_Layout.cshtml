@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Mash Able - Premium Admin Template</title>
+    <title>Izburs Yönetici Paneli</title>
     <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -30,6 +30,8 @@
     <link rel="stylesheet" type="text/css" href="/Tasarim/dark/assets/pages/flag-icon/flag-icon.min.css">
     <!-- Menu-Search css -->
     <link rel="stylesheet" type="text/css" href="/Tasarim/dark/assets/pages/menu-search/css/component.css">
+    <!-- Range slider css -->
+    <link rel="stylesheet" type="text/css" href="/Tasarim/bower_components/seiyria-bootstrap-slider/css/bootstrap-slider.css">
     <!-- Horizontal-Timeline css -->
     <link rel="stylesheet" type="text/css" href="/Tasarim/dark/assets/pages/dashboard/horizontal-timeline/css/style.css">
     <!-- Data Table Css -->
@@ -44,6 +46,8 @@
     <link rel="stylesheet" type="text/css" href="/Tasarim/bower_components/multiselect/css/multi-select.css" />
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="/Tasarim/dark/assets/css/style.css">
+    <!-- lightbox Fremwork -->
+    <link rel="stylesheet" type="text/css" href="/Tasarim/bower_components/lightbox2/css/lightbox.min.css">
     <!-- light-box css -->
     <link rel="stylesheet" type="text/css" href="/Tasarim/bower_components/ekko-lightbox/css/ekko-lightbox.css">
     <link rel="stylesheet" type="text/css" href="/Tasarim/bower_components/lightbox2/css/lightbox.css">
@@ -53,6 +57,9 @@
     <link rel="stylesheet" type="text/css" href="/Tasarim/bower_components/animate.css/css/animate.css">
     <!-- animation nifty modal window effects css -->
     <link rel="stylesheet" type="text/css" href="/Tasarim/dark/assets/css/component.css">
+    <!-- hover-effect.css -->
+    <link rel="stylesheet" type="text/css" href="/Tasarim/dark/assets/pages/hover-effect/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/Tasarim/dark/assets/pages/hover-effect/set2.css">
     <!--color css-->
     <link rel="stylesheet" type="text/css" href="/Tasarim/dark/assets/css/linearicons.css">
     <link rel="stylesheet" type="text/css" href="/Tasarim/dark/assets/css/simple-line-icons.css">
@@ -602,20 +609,86 @@
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="ti-layout"></i></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.page_layout.main">Page layouts</span>
-                                        <span class="pcoded-badge label label-warning">NEW</span>
+                                        <span class="pcoded-mtext" data-i18n="nav.page_layout.main">Raporlar</span>
+                                        @*<span class="pcoded-badge label label-warning">NEW</span>*@
                                     </a>
-
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a href="/Admin/Rapor/Basvuru" data-i18n="nav.basic-components.alert">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">Başvuru Sorgulama</span>
+                                                @*<span class="pcoded-badge label label-danger">15230+</span>*@
+                                                @*<span class="pcoded-mcaret"></span>*@
+                                            </a>
+                                        </li>
+                                        @*<li class=" ">
+                                            <a href="/Admin/Ogrenci/Inceleme" data-i18n="nav.basic-components.alert">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">İncelemede</span>
+                                                <span class="pcoded-badge label label-danger">152+</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a href="/Admin/Ogrenci/Kararsiz" data-i18n="nav.basic-components.breadcrumbs">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">Kararsızlar</span>
+                                                <span class="pcoded-badge label label-danger">90+</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a href="/Admin/Ogrenci/Olumlu" data-i18n="nav.basic-components.breadcrumbs">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">Olumlular</span>
+                                                <span class="pcoded-badge label label-danger">52+</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>*@
+                                    </ul>
                                 </li>
 
-                                <li class=" ">
-                                    <a href="/Admin/Ogrenci/Basvuru" data-i18n="nav.widget.main">
-
-                                        <span class="pcoded-micon"><i class="ti-view-grid"></i></span>
-                                        <span class="pcoded-mtext">Başvurular</span>
-                                        <span class="pcoded-badge label label-danger">15230+</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)" data-i18n="nav.widget.main">
+                                            <span class="pcoded-micon"><i class="ti-view-grid"></i></span>
+                                            <span class="pcoded-mtext">Başvuru Yönetimi</span>
+                                            @*<span class="pcoded-badge label label-danger">15230+</span>*@
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class=" ">
+                                                <a href="/Admin/Ogrenci/Basvuru" data-i18n="nav.basic-components.alert">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext">Başvurular</span>
+                                                 
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="/Admin/Ogrenci/Inceleme" data-i18n="nav.basic-components.alert">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext">İncelemede</span>
+                                                    @*<span class="pcoded-badge label label-danger">152+</span>*@
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="/Admin/Ogrenci/Kararsiz" data-i18n="nav.basic-components.breadcrumbs">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext">Kararsızlar</span>
+                                                    @*<span class="pcoded-badge label label-danger">90+</span>*@
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="/Admin/Ogrenci/Olumlu" data-i18n="nav.basic-components.breadcrumbs">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext">Olumlular</span>
+                                                    @*<span class="pcoded-badge label label-danger">52+</span>*@
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                        </ul>
                                 </li>
 
                                 <li class=" ">
@@ -623,7 +696,7 @@
 
                                         <span class="pcoded-micon"><i class="ti-view-grid"></i></span>
                                         <span class="pcoded-mtext">Yorumlar</span>
-                                        <span class="pcoded-badge label label-danger">15230+</span>
+                                        @*<span class="pcoded-badge label label-danger">15230+</span>*@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
@@ -637,13 +710,13 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
-                                        <li class=" ">
+                                        @*<li class=" ">
                                             <a href="alert.html" data-i18n="nav.basic-components.alert">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">Öğrenci Ekle</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
-                                        </li>
+                                        </li>*@
                                         <li class=" ">
                                             <a href="/Admin/Ogrenci/Burslu" data-i18n="nav.basic-components.breadcrumbs">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
@@ -667,7 +740,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="pcoded-hasmenu">
+                                @*<li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)" data-i18n="nav.advance-components.main">
                                         <span class="pcoded-micon"><i class="ti-crown"></i></span>
                                         <span class="pcoded-mtext">Transkript Yönetimi</span>
@@ -690,29 +763,29 @@
                                         </li>
 
                                     </ul>
-                                </li>
-                                <li class="pcoded-hasmenu">
+                                </li>*@
+                                @*<li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)" data-i18n="nav.extra-components.main">
                                         <span class="pcoded-micon"><i class="ti-gift"></i></span>
                                         <span class="pcoded-mtext">Şifre Gönder</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
-                                </li>
+                                </li>*@
                                 <li class=" ">
                                     <a href="/Admin/Ogrenci/Gorus" data-i18n="nav.animations.main">
                                         <span class="pcoded-micon"><i class="ti-reload rotate-refresh"></i></span>
                                         <span class="pcoded-mtext">Öğrenci Görüşleri</span>
-                                        <span class="pcoded-badge label label-danger">1+</span>
+                                        @*<span class="pcoded-badge label label-danger">1+</span>*@
                                     </a>
                                 </li>
-                                <li class=" ">
+                                @*<li class=" ">
                                     <a href="sticky.html" data-i18n="nav.sticky-notes.main">
                                         <span class="pcoded-micon"><i class="ti-layers-alt"></i></span>
                                         <span class="pcoded-mtext">Sticky Notes</span>
                                         <span class="pcoded-badge label label-danger">HOT</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
-                                </li>
+                                </li>*@
 
                             </ul>
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">İçerik Yönetimi</div>
@@ -721,7 +794,7 @@
                                     <a href="/Admin/Sayfa/" data-i18n="nav.form-pickers.main">
                                         <span class="pcoded-micon"><i class="ti-pencil-alt"></i></span>
                                         <span class="pcoded-mtext">Sayfa Yönetimi</span>
-                                        <span class="pcoded-badge label label-warning">NEW</span>
+                                        @*<span class="pcoded-badge label label-warning">NEW</span>*@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
@@ -729,7 +802,7 @@
                                     <a href="/Admin/Haber/" data-i18n="nav.form-pickers.main">
                                         <span class="pcoded-micon"><i class="ti-pencil-alt"></i></span>
                                         <span class="pcoded-mtext">Haber/Blog Yönetimi</span>
-                                        <span class="pcoded-badge label label-warning">NEW</span>
+                                        @*<span class="pcoded-badge label label-warning">NEW</span>*@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
@@ -771,136 +844,14 @@
                                     </a>
                                 </li>
                                 <li class=" ">
-                                    <a href="form-masking.html" data-i18n="nav.form-masking.main">
-                                        <span class="pcoded-micon"><i class="ti-write"></i></span>
-                                        <span class="pcoded-mtext">Form Masking</span>
+                                    <a href="/Admin/Ayar/HtmlGuncelle" data-i18n="nav.form-select.main">
+                                        <span class="pcoded-micon"><i class="ti-file"></i></span>
+                                        <span class="pcoded-mtext">Genel Ayarlar</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="form-wizard.html" data-i18n="nav.form-wizard.main">
-                                        <span class="pcoded-micon"><i class="ti-archive"></i></span>
-                                        <span class="pcoded-mtext">Form Wizard</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="pcoded-hasmenu">
-                                    <a href="javascript:void(0)" data-i18n="nav.ready-to-use.main">
-                                        <span class="pcoded-micon"><i class="ti-receipt"></i></span>
-                                        <span class="pcoded-mtext">Ready To Use</span>
-                                        <span class="pcoded-badge label label-danger">HOT</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                    <ul class="pcoded-submenu">
-                                        <li class=" ">
-                                            <a href="ready-cloned-elements-form.html" data-i18n="nav.ready-to-use.cloned-elements-form">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Cloned Elements Form</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="ready-currency-form.html" data-i18n="nav.ready-to-use.currency-form">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Currency Form</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="ready-form-booking.html" data-i18n="nav.ready-to-use.booking-form">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Booking Form</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="ready-form-booking-multi-steps.html" data-i18n="nav.ready-to-use.booking-multi-steps-form">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Booking Multi Steps Form</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="ready-form-comment.html" data-i18n="nav.ready-to-use.comment-form">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Comment Form</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="ready-form-contact.html" data-i18n="nav.ready-to-use.contact-form">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Contact Form</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="ready-job-application-form.html" data-i18n="nav.ready-to-use.job-application-form">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Job Application Form</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="ready-js-addition-form.html" data-i18n="nav.ready-to-use.jS-addition-form">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">JS Addition Form</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="ready-login-form.html" data-i18n="nav.ready-to-use.login-form">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Login Form</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="ready-popup-modal-form.html" target="_blank" data-i18n="nav.ready-to-use.popup-modal-form">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Popup Modal Form</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="ready-registration-form.html" data-i18n="nav.ready-to-use.registration-form">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Registration Form</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="ready-review-form.html" data-i18n="nav.ready-to-use.review-form">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Review Form</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="ready-subscribe-form.html" data-i18n="nav.ready-to-use.subscribe-form">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Subscribe Form</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="ready-suggestion-form.html" data-i18n="nav.ready-to-use.suggestion-form">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Suggestion Form</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="ready-tabs-form.html" data-i18n="nav.ready-to-use.tabs-form">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Tabs Form</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li>
                             </ul>
-                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.support">Ayarlar</div>
+                            @*<div class="pcoded-navigatio-lavel" data-i18n="nav.category.support">Ayarlar</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
                                     <a href="#" data-i18n="nav.documentation.main" target="_blank">
@@ -909,7 +860,7 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                            </ul>
+                            </ul>*@
                         </div>
                     </nav>
                     @RenderBody()
@@ -1011,10 +962,13 @@
     <!-- notification js -->
     <script type="text/javascript" src="/Tasarim/dark/assets/js/bootstrap-growl.min.js"></script>
     <script type="text/javascript" src="/Tasarim/dark/assets/pages/notification/notification.js"></script>
+    <!-- range slider js -->
+    <script type="text/javascript" src="/Tasarim/bower_components/seiyria-bootstrap-slider/js/bootstrap-slider.js"></script>
     <!-- Custom js -->
     <script src="/Tasarim/dark/assets/pages/data-table/extensions/buttons/js/extension-btns-custom.js"></script>
     <script type="text/javascript" src="/Tasarim/dark/assets/js/script.js"></script>
     <script type="text/javascript" src="/Tasarim/dark/assets/pages/advance-elements/select2-custom.js"></script>
+    <script type="text/javascript" src="/Tasarim/dark/assets/pages/range-slider.js"></script>
     <script src="/Tasarim/dark/assets/js/pcoded.min.js"></script>
     <script src="/Tasarim/dark/assets/js/demo-12.js"></script>
     <script src="/Tasarim/dark/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>

@@ -101,5 +101,27 @@ namespace Izburs.Web.Areas.Admin.Controllers
                 return Json("no");
             }
         }
+        public IActionResult Duzenle(int id)
+        {
+            ViewBag.Kat = dbkat.GetirHepsi();
+            return View(db.GetirHaberId(id));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Duzenle(Haber model, IFormFile Resim)
+        {
+            if (ModelState.IsValid)
+            {
+                if (Resim != null)
+                {
+                    var result = upload._fncResimYukleAsync(Resim);
+                    model.Resim = result.Result;
+                }
+                model.GuncellemeTarihi = Convert.ToDateTime(DateTime.Now);
+                db.Guncelle(model);
+            }
+            ViewBag.Kat = dbkat.GetirHepsi();
+            return View(model);
+        }
     }
 }

@@ -11,9 +11,9 @@ namespace Izburs.DAL.Entities
     {
 
         [Required(ErrorMessage = "Lütfen Transkriptinizi Boş Geçmeyiniz")]
+        [RegularExpression(@"([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.gif)$", ErrorMessage = "Sadece JPG ve PNG resim formatlarını yükleyebilirsiniz.")]
         public string Dosya { get; set; }
-        public string Aciklama { get; set; }
-        public int KullaniciId { get; set; }
+        public string AppUserId { get; set; }
         public int DonemId { get; set; }
         public Donem Donem { get; set; }
     }

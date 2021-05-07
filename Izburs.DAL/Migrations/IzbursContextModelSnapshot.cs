@@ -33,6 +33,9 @@ namespace Izburs.DAL.Migrations
                     b.Property<string>("BankaAdi")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Bolum")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -64,6 +67,12 @@ namespace Izburs.DAL.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<string>("Okul")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OkulTuru")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -78,6 +87,9 @@ namespace Izburs.DAL.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Sinif")
+                        .HasColumnType("int");
 
                     b.Property<string>("TcNo")
                         .HasColumnType("nvarchar(max)");
@@ -111,6 +123,9 @@ namespace Izburs.DAL.Migrations
 
                     b.Property<string>("Aciklama")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("BasvuruForm")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("Durum")
                         .HasColumnType("bit");
@@ -459,6 +474,9 @@ namespace Izburs.DAL.Migrations
                     b.Property<string>("Aciklama")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("Durum")
                         .HasColumnType("bit");
 
@@ -468,12 +486,7 @@ namespace Izburs.DAL.Migrations
                     b.Property<DateTime>("KayitTarihi")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("KullaniciId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("KullaniciId");
 
                     b.ToTable("Gorus");
                 });
@@ -929,6 +942,9 @@ namespace Izburs.DAL.Migrations
                     b.Property<string>("Aciklama")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("DonemId")
                         .HasColumnType("int");
 
@@ -944,9 +960,6 @@ namespace Izburs.DAL.Migrations
 
                     b.Property<DateTime>("KayitTarihi")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("KullaniciId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -1189,17 +1202,6 @@ namespace Izburs.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("GaleriKat");
-                });
-
-            modelBuilder.Entity("Izburs.DAL.Entities.Gorus", b =>
-                {
-                    b.HasOne("Izburs.DAL.Entities.Kullanici", "Kullanici")
-                        .WithMany()
-                        .HasForeignKey("KullaniciId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Kullanici");
                 });
 
             modelBuilder.Entity("Izburs.DAL.Entities.Haber", b =>

@@ -18,7 +18,9 @@ namespace Izburs.Web.Controllers
         public IActionResult Goster(int id)
         {
             GaleriRepository grp = new GaleriRepository();
-            var ad = grp.Select(x => x.GaleriKatId == id).ToList();
+            //var ad = grp.Select(x => x.GaleriKatId == id).ToList();
+            //var ga = grp.GetirIdile(id);
+            var ad = grp.GetirKatId(id);
             var katt = ad.FirstOrDefault();
             ViewBag.KatAdi = katt.GaleriKat.Ad;
             return View(ad);

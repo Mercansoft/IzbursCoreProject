@@ -1,0 +1,74 @@
+﻿@model KullaniciModel
+    <script>
+        $(function () {
+            $("#SifreGonder").click(function () {
+                var YeniSifre = $("#exampleInputEmail2").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/Ogrenci/YeniSifre",
+                    data: { YeniSifre: YeniSifre },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data == "ok") {
+                            $("#sonuc").append("<div class='alert alert-success'>Tebrikler! Şifreniz Sıfırlanmıştır. Yeni şifreniz ile giriş yapabilirsiniz.</div>");
+                        } else {
+                            $("#sonuc").append("<div class='alert alert-danger'>Hata! Şifre Sıfırlama Başarısız oldu.</div>");
+                        }
+                    }
+
+                });
+            });
+        });
+    </script>
+    <!-- Section: inner-header -->
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/Shared/images/bg/bg3.jpg">
+    <div class="container pt-70 pb-20">
+        <!-- Section Content -->
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="title text-white">Öğrenci Paneli</h2>
+                    <ol class="breadcrumb text-left text-black mt-10">
+                        <li><a href="/">Anasayfa</a></li>
+                        <li><a href="#">Öğrenci</a></li>
+                        <li class="active text-gray-silver">Şifremi Sıfırla</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div id="sonuc"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Öğrenci Şifre SIfırlama Paneli</h2>
+                <hr>
+                @*<div class="heading-line-bottom">
+                    <h4 class="heading-title">Basic example</h4>
+                </div>*@
+
+                <div data-example-id="basic-forms" class="bs-example mb-30">
+                    @*<form action="/Ogrenci/YeniSifre" method="post">*@
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">Yeni Şifrenizi Giriniz</label>
+                        <input type="password" placeholder="Yeni Şifrenizi Giriniz" id="exampleInputEmail2" class="form-control" name="YeniSifre">
+                    </div>
+                    @*<button type="button" id="SifreGonder" class="btn btn-dark btn-flat pull-right m-0">Submit</button>*@
+                    <button class="btn btn-default" type="button" id="SifreGonder">Şifremi Değiştir</button>
+                    @*</form>*@
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+@section Javascript{
+
+    <script src="~/jqueryValid/jquery.validate.min.js"></script>
+    <script src="~/jqueryUnob/jquery.validate.unobtrusive.min.js"></script>
+}

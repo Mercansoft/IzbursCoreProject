@@ -1,0 +1,113 @@
+﻿@model ICollection<Gorus>
+    <!-- Section: inner-header -->
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/Shared/images/bg/bg3.jpg">
+    <div class="container pt-70 pb-20">
+        <!-- Section Content -->
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="title text-white">Görüşlerim</h2>
+                    <ol class="breadcrumb text-left text-black mt-10">
+                        <li><a href="/">Anasayfa</a></li>
+                        <li><a href="#">Öğrenci</a></li>
+                        <li class="active text-gray-silver">Görüşlerim</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="">
+    <div class="container">
+        <div class="section-content">
+            <div class="row">
+                <div class="col-sx-12 col-sm-4 col-md-4">
+                    <div class="doctor-thumb">
+                        <img src="@ViewBag.Resim" height="470" width="400" alt="">
+                    </div>
+                    <div class="info p-20 bg-black-333">
+                        <h4 class="text-uppercase text-white">@ViewBag.AdSoyad</h4>
+                        <a class="btn btn-info btn-flat mt-10 mb-sm-30" href="/Ogrenci/Profil/@User.Identity.Name">Profilim</a><br />
+                        <a class="btn btn-info btn-flat mt-10 mb-sm-30" href="/Ogrenci/Transkriptlerim">Transkriptlerim</a><br />
+                        <a class="btn btn-info btn-flat mt-10 mb-sm-30" href="/Ogrenci/Goruslerim">Görüş Bildir</a><br />
+                        <a class="btn btn-info btn-flat mt-10 mb-sm-30" href="/Ogrenci/Basvurularim">Başvurularım</a><br />
+                        <a class="btn btn-danger btn-flat mt-10 mb-sm-30" href="/Ogrenci/Cikis">Çıkış</a>
+                    </div>
+                </div>
+                <span class="text-black">@TempData["Kayit"]</span>
+                <span class="text-danger">@TempData["Durum"]</span>
+                <div class="col-xs-12 col-sm-8 col-md-8">
+                    <div>
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#orders" aria-controls="orders" role="tab" data-toggle="tab" class="font-15 text-uppercase">Görüş Ekle </a></li>
+                            <li role="presentation"><a href="#free-orders" aria-controls="free-orders" role="tab" data-toggle="tab" class="font-15 text-uppercase">Görüşlerim </a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="orders">
+                                @*<form name="editprofile-form" method="post" action="/Ogrenci/ProfilGuncelle" enctype="multipart/form-data">*@
+                                <form asp-action="GorusEkle" asp-controller="Ogrenci" method="post">
+                                    <div asp-validation-summary="All" class="text-danger"></div>
+                                    <div class="icon-box mb-0 p-0">
+                                        <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
+                                            <i class="fa fa-user"></i>
+                                        </a>
+                                        <h4 class="text-gray pt-10 mt-0 mb-30">Gorüş Gönder</h4>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label>Açıklama</label>
+                                            <textarea name="Aciklama" class="form-control" cols="20" rows="5" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-dark btn-lg mt-15" type="submit">Gönder</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="free-orders">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th># ID</th>
+                                            <th>Görüş</th>
+                                            <th>Gönderim Tarihi</th>
+                                            @*<th></th>*@
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.Id</td>
+                                                <td>@item.Aciklama</td>
+                                                <td>@item.KayitTarihi.ToShortDateString()</td>
+                                                <td>
+                                                    @if (item.Durum == true)
+                                                    {
+                                                        <p>Onay Bekliyor</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>Onaylandı</p>
+                                                    }
+                                                </td>
+                                                @*<td><a class="btn btn-success btn-xs" href="#">View Order</a></td>*@
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

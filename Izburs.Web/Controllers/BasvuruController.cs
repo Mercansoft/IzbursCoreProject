@@ -19,6 +19,7 @@ namespace Izburs.Web.Controllers
     {
         UserManager<AppUser> userManager;
         RoleManager<IdentityRole> roleManager;
+        AyarRepository arp = new AyarRepository();
         ////string TamYolYeri = "";
         //private readonly IHostingEnvironment _environment;
         //public BasvuruController(IHostingEnvironment environment) { _environment = environment; }
@@ -44,8 +45,17 @@ namespace Izburs.Web.Controllers
         }
         public IActionResult Index()
         {
+            //var ayar= arp.GetirIdile(1);
+            var ayar = arp.Getir();
+            if (ayar.BasvuruForm==true)
+            {
+                return View(GetData());
+            }
+            else
+            {
+                return Redirect("/Basvuru/Bitti");
+            }
 
-            return View(GetData());
         }
         private bool OgrenciOlustur(string email,string adsoyad,string tel,DateTime dogumtarih,string resim)
         {
@@ -269,30 +279,30 @@ namespace Izburs.Web.Controllers
                 bool durum =kdb.Ekle(model);
                 if (durum)
                 {
-                    AppUser ogrenci = userManager.FindByNameAsync(model.Email).Result;
-                    if (ogrenci==null)
-                    {
-                        OgrenciOlustur(model.Email, model.Ad + " " + model.Soyad, model.Telefon, model.DogumTarihi, model.Resim);
-                        AppUser ogrenci2 = userManager.FindByNameAsync(model.Email).Result;
-                        OgrenciBasvuru ogrb = new OgrenciBasvuru
-                        {
-                            AppUserId = ogrenci2.Id,
-                            BasvuruId = model.Id
+                    //AppUser ogrenci = userManager.FindByNameAsync(model.Email).Result;
+                    //if (ogrenci==null)
+                    //{
+                    //    OgrenciOlustur(model.Email, model.Ad + " " + model.Soyad, model.Telefon, model.DogumTarihi, model.Resim);
+                    //    AppUser ogrenci2 = userManager.FindByNameAsync(model.Email).Result;
+                    //    OgrenciBasvuru ogrb = new OgrenciBasvuru
+                    //    {
+                    //        AppUserId = ogrenci2.Id,
+                    //        BasvuruId = model.Id
 
-                        };
-                        ogbasdb.Ekle(ogrb);
-                    }
-                    else
-                    {
+                    //    };
+                    //    ogbasdb.Ekle(ogrb);
+                    //}
+                    //else
+                    //{
                         
-                        OgrenciBasvuru ogrb = new OgrenciBasvuru
-                        {
-                            AppUserId = ogrenci.Id,
-                            BasvuruId = model.Id
+                    //    OgrenciBasvuru ogrb = new OgrenciBasvuru
+                    //    {
+                    //        AppUserId = ogrenci.Id,
+                    //        BasvuruId = model.Id
 
-                        };
-                        ogbasdb.Ekle(ogrb);
-                    }
+                    //    };
+                    //    ogbasdb.Ekle(ogrb);
+                    //}
 
                     return Redirect("/Basvuru/Durum");
                 }
@@ -335,6 +345,10 @@ namespace Izburs.Web.Controllers
             return path;
         }
         public IActionResult Durum()
+        {
+            return View();
+        }
+        public IActionResult Bitti()
         {
             return View();
         }

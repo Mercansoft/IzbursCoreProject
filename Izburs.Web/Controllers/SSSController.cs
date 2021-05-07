@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Izburs.Business.Repositories.EF;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,10 @@ namespace Izburs.Web.Controllers
 {
     public class SSSController : Controller
     {
+        SSSRepository db = new SSSRepository();
         public IActionResult Index()
         {
-            return View();
+            return View(db.GetirHepsi());
         }
     }
 }

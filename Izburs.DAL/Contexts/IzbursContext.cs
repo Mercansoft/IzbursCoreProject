@@ -14,6 +14,9 @@ namespace Izburs.DAL.Contexts
             optionsBuilder.UseSqlServer("server=localhost;" +
                 "database=IzbursCore2; user id=sa; password=@Yzq1w2e3;");
 
+            //        optionsBuilder.UseSqlServer("server=185.81.153.22\\MSSQLSERVER2019;" +
+            //"database=izbursCore; user id=sa; password=@Yzq1w2e39420522;");
+
             //IdentityCore dan sonra aşağıdaki kodu ekliyoruz
             base.OnConfiguring(optionsBuilder);
         }

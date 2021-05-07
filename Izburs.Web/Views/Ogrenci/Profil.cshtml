@@ -1,0 +1,182 @@
+﻿@model AppUser
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnSifreGuncelle").click(function () {
+                var YeniSifre = $("#Sifre").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/Ogrenci/SifreDegistir",
+                    data: { YeniSifre: YeniSifre },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data == "ok") {
+                            $("#sonuc").append("<div class='alert alert-success'>Tebrikler! Şifreniz Başarıyla Güncellenmiştir.</div>");
+                        } else {
+                            $("#sonuc").append("<div class='alert alert-danger'>Hata! Şifre Güncelleme Başarısız oldu.</div>");
+                        }
+                    }
+                });
+            });
+            $("#btnBankaGuncelle").click(function () {
+                var BankaAdi = $("#BankaAdi").val();
+                var Iban = $("#Iban").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/Ogrenci/BankaGuncelle",
+                    data: { BankaAdi: BankaAdi, Iban: Iban},
+                    dataType: "json",
+                    success: function (data) {
+                        if (data == "ok") {
+                            $("#sonuc2").append("<div class='alert alert-success'>Tebrikler! Banka Bilgileriniz Başarıyla Güncellenmiştir.</div>");
+                        } else {
+                            $("#sonuc2").append("<div class='alert alert-danger'>Hata! Banka Bilgileriniz Güncelleme Başarısız oldu.</div>");
+                        }
+                    }
+                });
+            });
+     });
+    </script>
+    <!-- Section: inner-header -->
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/Shared/images/bg/bg3.jpg">
+        <div class="container pt-70 pb-20">
+            <!-- Section Content -->
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="title text-white">Bilgilerimi Güncelle</h2>
+                        <ol class="breadcrumb text-left text-black mt-10">
+                            <li><a href="/">Anasayfa</a></li>
+                            <li><a href="#">Öğrenci</a></li>
+                            <li class="active text-gray-silver">Profilim</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Doctor Details -->
+    <section class="">
+        <div class="container">
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-sx-12 col-sm-4 col-md-4">
+                        <div class="doctor-thumb">
+                            <img src="@Model.Resim" height="470" width="400" alt="">
+                        </div>
+                        <div class="info p-20 bg-black-333">
+                            <h4 class="text-uppercase text-white">@Model.AdSoyad</h4>
+                            <a class="btn btn-info btn-flat mt-10 mb-sm-30" href="/Ogrenci/Profil/@User.Identity.Name">Profilim</a><br />
+                            <a class="btn btn-info btn-flat mt-10 mb-sm-30" href="/Ogrenci/Transkriptlerim">Transkriptlerim</a><br />
+                            <a class="btn btn-info btn-flat mt-10 mb-sm-30" href="/Ogrenci/Goruslerim">Görüş Bildir</a><br />
+                            <a class="btn btn-info btn-flat mt-10 mb-sm-30" href="/Ogrenci/Basvurularim">Başvurularım</a><br />
+                            <a class="btn btn-danger btn-flat mt-10 mb-sm-30" href="/Ogrenci/Cikis">Çıkış</a>
+                        </div>
+                    </div>
+                    @TempData["Durum"]
+                    <div class="col-xs-12 col-sm-8 col-md-8">
+                        <form name="editprofile-form" method="post" action="/Ogrenci/ProfilGuncelle" enctype="multipart/form-data">
+                            <div class="icon-box mb-0 p-0">
+                                <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
+                                    <i class="fa fa-user"></i>
+                                </a>
+                                <h4 class="text-gray pt-10 mt-0 mb-30">Profil Güncelleme</h4>
+                            </div>
+                            <hr>
+                            <p class="text-gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi id perspiciatis facilis nulla possimus quasi, amet qui. Ea rerum officia, aspernatur nulla neque nesciunt alias.</p>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Resim Yükle</label>
+                                    <input asp-for="Resim" id="Resim" class="form-control" type="file">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Adı Soyadı</label>
+                                    <input asp-for="AdSoyad" id="AdSoyad" class="form-control" type="text" value="@Model.AdSoyad" readonly>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Email</label>
+                                    <input asp-for="Email" class="form-control" type="email" id="Email" value="@Model.Email" readonly>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Telefon</label>
+                                    <input asp-for="PhoneNumber" id="PhoneNumber" class="form-control" type="text" value="@Model.PhoneNumber">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Doğum Tarihi</label>
+                                    <input asp-for="DogumTarihi" name="DogumTarihi" class="form-control" type="date" value="@Model.DogumTarihi.ToShortDateString()">
+                                </div>
+                            </div>
+                            @*<div class="row">
+                    <div class="form-group col-md-12">
+                        <label>Address</label>
+                        <textarea name="form_address" class="form-control" cols="20" rows="5"></textarea>
+                    </div>
+                </div>*@
+                            <div class="form-group">
+                                <button class="btn btn-dark btn-lg mt-15" type="submit">Güncelle</button>
+                            </div>
+                        </form>
+                        <hr class="mt-70 mb-70">
+                        <div id="sonuc2"></div>
+                        @*<form name="editprofile-form" method="post">*@
+                        <div class="icon-box mb-0 p-0">
+                            <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
+                                <i class="fa fa-key"></i>
+                            </a>
+                            <h4 class="text-gray pt-10 mt-0 mb-30">Banka Bilgileri Güncelleme</h4>
+                        </div>
+                        <hr>
+                        <p class="text-gray">Bursun yatacağı bankanın IBAN bilgilerini giriniz.</p>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Banka Adı</label>
+                                <input asp-for="BankaAdi" name="BankaAdi" id="BankaAdi" class="form-control" type="text" value="@Model.BankaAdi">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>IBAN No</label>
+                                <input asp-for="Iban" name="Iban" id="Iban" class="form-control" type="text" value="@Model.Iban">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-dark btn-lg mt-15" type="submit" id="btnBankaGuncelle">Güncelle</button>
+                        </div>
+                        @*</form>*@
+                        <hr class="mt-70 mb-70">
+                        <div id="sonuc"></div>
+                        @*<form>*@
+                        <div class="icon-box mb-0 p-0">
+                            <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
+                                <i class="fa fa-key"></i>
+                            </a>
+                            <h4 class="text-gray pt-10 mt-0 mb-30">Şifre Güncelleme</h4>
+                        </div>
+                        <hr>
+                        @*<div class="row">
+                <div class="form-group col-md-6">
+                    <label>Choose Password</label>
+                    <input name="form_choose_password" class="form-control" type="text">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Re-enter Password</label>
+                    <input name="form_re_enter_password" class="form-control" type="text">
+                </div>
+            </div>*@
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label>Yeni Şifreniz</label>
+                                <input id="Sifre" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-dark btn-lg mt-15" type="submit" id="btnSifreGuncelle">Güncelle</button>
+                        </div>
+                        @*</form>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

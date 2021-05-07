@@ -1,0 +1,174 @@
+﻿@model IEnumerable<Basvuru>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#DurumDanger").hide();
+        $("#DurumSuccess").hide();
+        //var id = $(this).data("id");
+        $("#btnKararsiz").click(function () {
+            var durumId = $(this).data("id");
+            //var durumId = $(this).data("durumId");
+            var id = $("#btnId").val();
+            BursGuncelle(id, durumId);
+        });
+        $("#btnOlumlu").click(function () {
+            var durumId = $(this).data("id");
+            //var durumId = $(this).data("durumId");
+            var id = $("#btnId").val();
+            BursGuncelle(id, durumId);
+        });
+        $("#btnIptal").click(function () {
+            var durumId = $(this).data("id");
+            //var durumId = $(this).data("durumId");
+            var id = $("#btnId").val();
+            BursGuncelle(id, durumId);
+        });
+        function BursGuncelle(id, durumId) {
+            if (id != "") {
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/Ogrenci/DurumGuncelle",
+                    data: { id: id, durumId: durumId },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data == "ok") {
+                            $("#DurumSuccess").show();
+                        } else {
+                            $("#DurumDanger").show();
+                        }
+                    }
+                });
+            }
+        }
+    });
+</script>
+    <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+            
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+
+                    <!-- Main-body start -->
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <!-- Page-header start -->
+                            <div class="page-header">
+                                <div class="page-header-title">
+                                    <h4>Öğrenci Burs Başvuruları</h4>
+                                    <span>Öğrencilerin online başvuru formunu doldurarark başvurduğu listedir</span>
+                                </div>
+                                <div class="page-header-breadcrumb">
+                                    <ul class="breadcrumb-title">
+                                        <li class="breadcrumb-item">
+                                            <a href="index.html">
+                                                <i class="icofont icofont-home"></i>
+                                            </a>
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <a href="#!">Öğrenci İşlemleri</a>
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <a href="#!">Başvuru Yönetimi</a>
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <a href="#!">Incelemede Olanlar</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="alert alert-success background-success" id="DurumSuccess">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <i class="icofont icofont-close-line-circled text-white"></i>
+                                </button>
+                                <strong>Tebrikler !</strong> Burs Durumu Başarıyla Güncellendi.
+                            </div>
+
+                            <div class="alert alert-danger background-danger" id="DurumDanger">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <i class="icofont icofont-close-line-circled text-white"></i>
+                                </button>
+                                <strong>Hata !</strong> Beklenmedik bir Hata Oluştu.
+                            </div>
+                            <!-- Page-header end -->
+                            <!-- Page-body start -->
+                            <div class="page-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <!-- HTML5 Export Buttons table start -->
+                                        <div class="card">
+                                            <div class="card-header table-card-header">
+                                                <h5>INCELEMEDE OLANLARIN LİSTESİ</h5>
+                                                <div class="card-header-right">
+                                                    <i class="icofont icofont-rounded-down"></i>
+                                                    <i class="icofont icofont-refresh"></i>
+                                                    <i class="icofont icofont-close-circled"></i>
+                                                </div>
+                                            </div>
+                                            <div class="card-block">
+                                                <div class="dt-responsive table-responsive">
+                                                    <table id="basic-btn" class="table table-striped table-bordered nowrap">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Resim</th>
+                                                                <th>Adı Soyadı</th>
+                                                                <th>Okul</th>
+                                                                <th>Bölüm</th>
+                                                                <th>Şehir</th>
+                                                                <th>Puan</th>
+                                                                <th>Görüntüle</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var item in Model)
+                                                            {
+                                                                <tr>
+                                                                    <td><img src="@item.Resim" width="100" height="75" /></td>
+                                                                    <td>@item.Ad @item.Soyad</td>
+                                                                    <td>@item.Okul.Ad</td>
+                                                                    <td>@item.Bolum.Ad</td>
+                                                                    <td>@item.Sehir.Ad</td>
+                                                                    <td>@item.Puan</td>
+                                                                    <td>
+                                                                        <div class="dropdown-primary dropdown open">
+                                                                            <button class="btn btn-primary dropdown-toggle waves-effect waves-light " type="button" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">İŞLEMLER</button>
+                                                                            <div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                                                                <input id="btnId" type="hidden" value="@item.Id" />
+                                                                                <a class="dropdown-item waves-light waves-effect" href="#" id="btnKararsiz" data-id="7" type="submit"><i class="icofont icofont-info-square"></i> KARARSIZ</a>
+                                                                                <a class="dropdown-item waves-light waves-effect" href="#" id="btnOlumlu" data-id="8" type="submit"><i class="icofont icofont-check-circled"></i> OLUMLU</a>
+                                                                                <a class="dropdown-item waves-light waves-effect" href="#" id="btnIptal" data-id="1" type="submit"><i class="icofont icofont-eye-alt"></i>  İPTAL</a>
+                                                                                <div class="dropdown-divider"></div>
+                                                                                <a class="dropdown-item waves-light waves-effect" href="/Admin/Ogrenci/Goruntule/@item.Id"><i class="icofont icofont-eye-alt"></i>  BAŞVURU GÖR</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <th>Resim</th>
+                                                                <th>Adı Soyadı</th>
+                                                                <th>Okul</th>
+                                                                <th>Bölüm</th>
+                                                                <th>Şehir</th>
+                                                                <th>Puan</th>
+                                                                <th>Görüntüle</th>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Page-body end -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Main-body end -->
+                    <div id="styleSelector">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

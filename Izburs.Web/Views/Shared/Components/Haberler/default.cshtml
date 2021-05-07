@@ -1,5 +1,8 @@
 ﻿@model List<Haber> 
 <!-- Section: COURSES -->
+@{ 
+    string yazi = "";
+}
 <section class="bg-lighter">
     <div class="container pb-60">
         <div class="section-title mb-10">
@@ -24,19 +27,45 @@
                                     <div class="content text-left flip p-25 pt-0">
                                         <h4 class="line-bottom mb-10">@item.Baslik</h4>
                                         <p>
-                                        @try
-                                        {
-                                            string ic = item.Icerik.Substring(0, 100);
-                                            Html.Raw(ic);
-                                            Html.Raw(item.Icerik.Substring(0, 100));
-                                        }
-                                        catch (Exception)
-                                        {
+                                            @{
+                                                //yazi = item.Icerik.Substring(0, 50);
+                                                //Html.Raw(yazi);
+                                                //try
+                                                //{
+                                                //    yazi = item.Icerik.Substring(0, 100);
+                                                //    Html.Raw(yazi);
+                                                //}
+                                                //catch (Exception)
+                                                //{
+                                                //    yazi = item.Icerik.Substring(0, item.Icerik.Length);
+                                                //    Html.Raw(yazi);
+                                                //}
 
-                                        }
-                                       </p>
-                                        <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="/Haber/Oku/@item.Id">Devamını Oku</a>
-                                    </div>
+                                                if (item.Icerik.Length > 100)
+                                                {
+                                                    yazi = item.Icerik.Substring(0, 100);
+                                                    Html.Raw(yazi);
+                                                }
+                                                else
+                                                {
+                                                    yazi = item.Icerik.Substring(0, item.Icerik.Length);
+                                                    Html.Raw(yazi);
+                                                }
+
+                                            }
+                                        </p>
+                                            @*@try
+            {
+                yazi = item.Icerik.Substring(0, 100);
+                Html.Raw(yazi);
+                Html.Raw(item.Icerik.Substring(0, 100));
+            }
+            catch (Exception)
+            {
+
+            }*@
+                                            .. <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="/Haber/Oku/@item.Id">Devamını Oku</a>
+                                        </div>
                                 </div>
                             </div>
                         }
