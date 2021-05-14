@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
@@ -105,6 +106,41 @@ namespace Izburs.Services
             {
                 return false;
             }
+        }
+        public static void HosgeldinTemplate(string AdSoyad,string GonderilecekMailAdres)
+        {
+            string body = string.Empty;
+            string yol = AppDomain.CurrentDomain.BaseDirectory + "//EmailTemplate//";
+            using (StreamReader reader = new StreamReader(yol + "Hosgeldin.html"))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{AdSoyad}", AdSoyad);
+            Gonder("Tebrikler! Izbursu Kazandın!!!", body,GonderilecekMailAdres);
+        }
+        public static void PasswordTemplate(string GonderilecekMailAdres)
+        {
+            string body = string.Empty;
+            string yol = AppDomain.CurrentDomain.BaseDirectory + "//EmailTemplate//";
+            using (StreamReader reader = new StreamReader(yol + "Password.html"))
+            {
+                body = reader.ReadToEnd();
+            }
+            Gonder("Izburs Giriş Bilgilerin", body, GonderilecekMailAdres);
+        }
+        public static bool SifremiUnuttumTemplate(string AdSoyad, string email, string token, string GonderilecekMailAdres)
+        {
+            string body = string.Empty;
+            string yol = AppDomain.CurrentDomain.BaseDirectory + "//EmailTemplate//";
+            using (StreamReader reader = new StreamReader(yol + "SifreUnuttum.html"))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{AdSoyad}", AdSoyad);
+            body = body.Replace("{email}", email);
+            body = body.Replace("{token}", token);
+            bool durum=Gonder("Izburs Giriş Şifre Sıfırlama", body, GonderilecekMailAdres);
+            return durum;
         }
     }
 }

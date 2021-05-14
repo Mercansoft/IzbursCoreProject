@@ -16,7 +16,7 @@ namespace Izburs.Web.ViewComponents
         public IViewComponentResult Invoke()
         {
             AyarRepository arp = new AyarRepository();
-            var ayar=arp.GetirIdile(2);
+            var ayar=arp.Getir();
             ViewBag.Html = ayar.Html;
             return View();
         }

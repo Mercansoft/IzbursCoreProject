@@ -2,6 +2,7 @@
 using Izburs.Business.Repositories.EF;
 using Izburs.Business.Tuple;
 using Izburs.DAL.Entities;
+using Izburs.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -137,7 +138,7 @@ namespace Izburs.Web.Areas.Admin.Controllers
             ogrenci.Sinif = basvuru.Sinif;
             ogrenci.TcNo = basvuru.TcKimlikNo;
             ogrenci.UserName = basvuru.Email;
-            AppUser createOgrenci = IdentityCreate.OlusturOgrenci(_userManager, _roleManager, ogrenci, "@Yzq1w2e3");
+            AppUser createOgrenci = IdentityCreate.OlusturOgrenci(_userManager, _roleManager, ogrenci, basvuru.TcKimlikNo);
             //Task.Delay(2000);
             
             //var createOgrenci = _userManager.FindByNameAsync(basvuru.Email).Result;
@@ -147,6 +148,9 @@ namespace Izburs.Web.Areas.Admin.Controllers
             bool durum = obrp.Ekle(Basogrenci);
             if (durum)
             {
+                MailGonder.HosgeldinTemplate(createOgrenci.AdSoyad, createOgrenci.Email);
+                MailGonder.PasswordTemplate(createOgrenci.Email);
+                //MailGonder.Gonder("Tebrikler!", "İzburslu oldunuz", ogrenci.Email);
                 var bas = brp.GetirIdile(Convert.ToInt32(Id));
                 bas.BursDurumID = Convert.ToInt32(durumId);
                 brp.Guncelle(bas);

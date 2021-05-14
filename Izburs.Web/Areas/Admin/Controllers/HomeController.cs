@@ -111,7 +111,7 @@ namespace Izburs.Web.Areas.Admin.Controllers
         public IActionResult BasvuruDurumDegistir()
         {
             AyarRepository arp = new AyarRepository();
-            var ayar = arp.GetirIdile(2);
+            var ayar = arp.Getir();
             
             if (ayar.BasvuruForm)
             {

@@ -219,7 +219,8 @@ namespace Izburs.Web.Controllers
            
                 var token = _userManager.GeneratePasswordResetTokenAsync(usr);
                 string uid = usr.Id;
-               durum= MailGonder.Gonder("Izburs Giriş Şifre Sıfırlama", "Şifrenizi SIfırlamak için aşağıdaki linki tıklayınız.<br><br><a href='izburs.com/Ogrenci/Sifirla?ogrencitoken="+token.Result+"&uid="+ uid + "'>ŞİFREMİ SIFIRLA</a>",usr.Email);
+                durum = MailGonder.SifremiUnuttumTemplate(usr.AdSoyad, usr.Email, "izburs.com/Ogrenci/Sifirla?ogrencitoken=" + token.Result + "&uid=" + uid, usr.Email);
+              // durum = MailGonder.Gonder("Izburs Giriş Şifre Sıfırlama", "Şifrenizi SIfırlamak için aşağıdaki linki tıklayınız.<br><br><a href='izburs.com/Ogrenci/Sifirla?ogrencitoken="+token.Result+"&uid="+ uid + "'>ŞİFREMİ SIFIRLA</a>",usr.Email);
             }
 
             if (durum == true)
