@@ -108,9 +108,14 @@ namespace Izburs.Web.Controllers
         [HttpPost]
         public IActionResult ProfilGuncelle(AppUser au, IFormFile Resim)
         {
-            var result = upload._fncResimYukleAsync(Resim);
+            
             var usr = _userManager.FindByNameAsync(User.Identity.Name).Result;
-            usr.Resim = result.Result;
+            if (Resim!=null)
+            {
+                var result = upload._fncResimYukleAsync(Resim);
+                usr.Resim = result.Result;
+            }
+
             usr.AdSoyad = au.AdSoyad;
             usr.DogumTarihi = au.DogumTarihi;
             usr.PhoneNumber = au.PhoneNumber;

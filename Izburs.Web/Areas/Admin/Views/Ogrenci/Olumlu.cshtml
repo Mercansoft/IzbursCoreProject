@@ -32,52 +32,90 @@
         });
     </script>*@
     <script type="text/javascript">
+        function Onayla(id, durumId) {
+            if (id != "") {
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/Ogrenci/DurumGuncelle",
+                    data: { id: id, durumId: durumId },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data == "ok") {
+                            $("#DurumSuccess").show();
+                        } else {
+                            $("#DurumDanger").show();
+                        }
+                    }
+                });
+            }
+        }
+        function IzbursOnay(id, durumId) {
+            if (id != "") {
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/Ogrenci/IzbursGiris",
+                    data: { id: id, durumId: durumId },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data == "ok") {
+                            $("#DurumSuccess").show();
+                        } else {
+                            $("#DurumDanger").show();
+                        }
+                    }
+                });
+            }
+        }
         $(document).ready(function () {
             $("#DurumDanger").hide();
             $("#DurumSuccess").hide();
             //var id = $(this).data("id");
-            $("#btnKararsiz").click(function () {
-                var durumId = $(this).data("id");
-                //var durumId = $(this).data("durumId");
-                var id = $("#btnId").val();
-                BursGuncelle(id, durumId);
-            });
-            $("#btnInceleme").click(function () {
-                var durumId = $(this).data("id");
-                //var durumId = $(this).data("durumId");
-                var id = $("#btnId").val();
-                BursGuncelle(id, durumId);
-            });
-            $("#btnIptal").click(function () {
-                var durumId = $(this).data("id");
-                //var durumId = $(this).data("durumId");
-                var id = $("#btnId").val();
-                BursGuncelle(id, durumId);
-            });
+            //$("#btnKararsiz").click(function () {
+            //    var durumId = $(this).data("id");
+            //    var userid = $(this).data("userid");
+            //    //var durumId = $(this).data("durumId");
+            //    //var id = $("#btnId").val();
+            //    BursGuncelle(userid, durumId);
+            //});
+            //$("#btnInceleme").click(function () {
+            //    var durumId = $(this).data("id");
+            //    var userid = $(this).data("userid");
+            //    //var durumId = $(this).data("durumId");
+            //    //var id = $("#btnId").val();
+            //    BursGuncelle(userid, durumId);
+            //});
+            //$("#btnIptal").click(function () {
+            //    var durumId = $(this).data("id");
+            //    var userid = $(this).data("userid");
+            //    //var durumId = $(this).data("durumId");
+            //    //var id = $("#btnId").val();
+            //    BursGuncelle(userid, durumId);
+            //});
             $("#btnIzbursGiris").click(function () {
                 var durumId = $(this).data("id");
+                var userid = $(this).data("userid");
                 //var durumId = $(this).data("durumId");
-                var id = $("#btnId").val();
+                //var id = $("#btnId").val();
                 //alert(id + " - " + durumId);
-                IzbursBursGuncelle(id, durumId);
+                IzbursBursGuncelle(userid, durumId);
             });
-            function BursGuncelle(id, durumId) {
-                if (id != "") {
-                    $.ajax({
-                        type: "POST",
-                        url: "/Admin/Ogrenci/DurumGuncelle",
-                        data: { id: id, durumId: durumId },
-                        dataType: "json",
-                        success: function (data) {
-                            if (data == "ok") {
-                                $("#DurumSuccess").show();
-                            } else {
-                                $("#DurumDanger").show();
-                            }
-                        }
-                    });
-                }
-            }
+            //function BursGuncelle(id, durumId) {
+            //    if (id != "") {
+            //        $.ajax({
+            //            type: "POST",
+            //            url: "/Admin/Ogrenci/DurumGuncelle",
+            //            data: { id: id, durumId: durumId },
+            //            dataType: "json",
+            //            success: function (data) {
+            //                if (data == "ok") {
+            //                    $("#DurumSuccess").show();
+            //                } else {
+            //                    $("#DurumDanger").show();
+            //                }
+            //            }
+            //        });
+            //    }
+            //}
             function IzbursBursGuncelle(id, durumId) {
                 if (id != "") {
                     $.ajax({
@@ -188,13 +226,14 @@
                                                                         <div class="dropdown-primary dropdown open">
                                                                             <button class="btn btn-primary dropdown-toggle waves-effect waves-light " type="button" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">İŞLEMLER</button>
                                                                             <div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                                                                <input id="btnId" type="hidden" value="@item.Id" />
+                                                                                @*<input id="btnId" type="hidden" value="@item.Id" />*@
                                                                                 <a class="dropdown-item waves-light waves-effect" href="/Admin/Ogrenci/Goruntule/@item.Id"><i class="icofont icofont-eye-alt"></i>  BAŞVURU GÖR</a>
-                                                                                <a class="dropdown-item waves-light waves-effect" href="#" id="btnKararsiz" data-id="7" type="submit"><i class="icofont icofont-info-square"></i> KARARSIZ</a>
-                                                                                <a class="dropdown-item waves-light waves-effect" href="#" id="btnInceleme" data-id="6" type="submit"><i class="icofont icofont-warning-alt"></i> INCELEME</a>
-                                                                                <a class="dropdown-item waves-light waves-effect" href="#" id="btnIptal" data-id="1" type="submit"><i class="icofont icofont-eye-alt"></i>  İPTAL</a>
+                                                                                <a class="dropdown-item waves-light waves-effect" href="#" onclick="Onayla('@item.Id', '7')" type="submit"> KARARSIZ</a>
+                                                                                <a class="dropdown-item waves-light waves-effect" href="#" onclick="Onayla('@item.Id', '6')" type="submit"> INCELEME</a>
+                                                                                <a class="dropdown-item waves-light waves-effect" href="#" onclick="Onayla('@item.Id', '1')" type="submit"> İPTAL</a>
                                                                                 <div class="dropdown-divider"></div>
-                                                                                <button id="btnIzbursGiris" data-id="2" type="submit" class="dropdown-item waves-light waves-effect">IZBURSA GİRİŞ</button>
+                                                                                <a class="dropdown-item waves-light waves-effect" href="#" onclick="IzbursOnay('@item.Id', '2')" type="submit"> IZBURSA GİRİŞ</a>
+                                                                                @*<button id="btnIzbursGiris" data-id="2" data-userid="@item.Id" type="submit" class="dropdown-item waves-light waves-effect">IZBURSA GİRİŞ</button>*@
                                                                                 @*<a class="dropdown-item waves-light waves-effect" href="#" id="btnIzbursGiris" data-id="2">IZBURSA GİRİŞ</a>*@
                                                                                 @*<input id="btnIdsw" type="submit" onclick="IzbursBursGuncelle(@item.Id,2)" value="giriş" />*@
                                                                             </div>

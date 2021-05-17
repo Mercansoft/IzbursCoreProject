@@ -1,28 +1,6 @@
 ﻿@model IEnumerable<Basvuru>
     <script type="text/javascript">
-    $(document).ready(function () {
-        $("#DurumDanger").hide();
-        $("#DurumSuccess").hide();
-        //var id = $(this).data("id");
-        $("#btnInceleme").click(function () {
-            var durumId = $(this).data("id");
-            //var durumId = $(this).data("durumId");
-            var id = $("#btnId").val();
-            BursGuncelle(id, durumId);
-        });
-        $("#btnOlumlu").click(function () {
-            var durumId = $(this).data("id");
-            //var durumId = $(this).data("durumId");
-            var id = $("#btnId").val();
-            BursGuncelle(id, durumId);
-        });
-        $("#btnIptal").click(function () {
-            var durumId = $(this).data("id");
-            //var durumId = $(this).data("durumId");
-            var id = $("#btnId").val();
-            BursGuncelle(id, durumId);
-        });
-        function BursGuncelle(id, durumId) {
+        function Onayla(id, durumId) {
             if (id != "") {
                 $.ajax({
                     type: "POST",
@@ -39,6 +17,50 @@
                 });
             }
         }
+        $(document).ready(function () {
+           
+        $("#DurumDanger").hide();
+        $("#DurumSuccess").hide();
+        //var id = $(this).data("id");
+        //$("#btnInceleme").click(function () {
+        //    var durumId = $(this).data("id");
+        //    var userid = $(this).data("userid");
+        //    //var durumId = $(this).data("durumId");
+        //    var id = $("#btnId").val();
+        //    BursGuncelle(id, durumId);
+        //});
+        //$("#btnOlumlu").click(function () {
+        //    var durumId = $(this).data("id");
+        //    var userid = $(this).data("userid");
+        //    //var durumId = $(this).data("durumId");
+        //    var id = $("#btnId").val();
+        //    BursGuncelle(id, durumId);
+        //});
+        //$("#btnIptal").click(function () {
+        //    var durumId = $(this).data("id");
+        //    var userid = $(this).data("userid");
+        //    //var durumId = $(this).data("durumId");
+        //    var id = $("#btnId").val();
+        //    BursGuncelle(id, durumId);
+        //});
+
+        //function BursGuncelle(id, durumId) {
+        //    if (id != "") {
+        //        $.ajax({
+        //            type: "POST",
+        //            url: "/Admin/Ogrenci/DurumGuncelle",
+        //            data: { id: id, durumId: durumId },
+        //            dataType: "json",
+        //            success: function (data) {
+        //                if (data == "ok") {
+        //                    $("#DurumSuccess").show();
+        //                } else {
+        //                    $("#DurumDanger").show();
+        //                }
+        //            }
+        //        });
+        //    }
+        //}
     });
     </script>
     <div class="pcoded-main-container">
@@ -132,9 +154,11 @@
                                                                             <button class="btn btn-primary dropdown-toggle waves-effect waves-light " type="button" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">İŞLEMLER</button>
                                                                             <div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                                                                 <input id="btnId" type="hidden" value="@item.Id" />
-                                                                                <a class="dropdown-item waves-light waves-effect" href="#" id="btnOlumlu" data-id="8" type="submit"><i class="icofont icofont-check-circled"></i> OLUMLU</a>
-                                                                                <a class="dropdown-item waves-light waves-effect" href="#" id="btnInceleme" data-id="6" type="submit"><i class="icofont icofont-warning-alt"></i> INCELEME</a>
-                                                                                <a class="dropdown-item waves-light waves-effect" href="#" id="btnIptal" data-id="1" type="submit"><i class="icofont icofont-eye-alt"></i>  İPTAL</a>
+                                                                                @*<a class="dropdown-item waves-light waves-effect" href="#" id="btnOlumlu" data-id="8" data-userid="@item.Id" type="submit"><i class="icofont icofont-check-circled"></i> OLUMLU</a>*@
+                                                                                <a class="dropdown-item waves-light waves-effect" href="#" onclick="Onayla('@item.Id','8')" type="submit"> OLUMLU</a>
+                                                                                @*<a class="dropdown-item waves-light waves-effect" href="#" id="btnInceleme" data-id="6" data-userid="@item.Id" type="submit"><i class="icofont icofont-warning-alt"></i> INCELEME</a>*@
+                                                                                <a class="dropdown-item waves-light waves-effect" href="#" onclick="Onayla('@item.Id', '6')" type="submit">INCELEME</a>
+                                                                                <a class="dropdown-item waves-light waves-effect" href="#" onclick="Onayla('@item.Id','1')" type="submit"> İPTAL</a>
                                                                                 <div class="dropdown-divider"></div>
                                                                                 <a class="dropdown-item waves-light waves-effect" href="/Admin/Ogrenci/Goruntule/@item.Id"><i class="icofont icofont-eye-alt"></i>  BAŞVURU GÖR</a>
                                                                             </div>
