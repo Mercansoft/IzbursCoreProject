@@ -24,6 +24,17 @@ namespace Izburs.Web
             services.AddAuthentication();
             //Identity core dan sonra aþaðýdaki 2 kodu ekledik.
             services.AddDbContext<IzbursContext>();
+
+            // First AddSession()
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(3);
+                options.Cookie.MaxAge = TimeSpan.FromHours(3);
+                options.Cookie.Name = "SessionNameBlaBlaBla";
+                options.Cookie.HttpOnly = true;
+               // options.Cookie.Expiration = TimeSpan.FromHours(3);
+            });
+
             services.AddIdentity<AppUser, IdentityRole>(
                 //opt =>
                 //{
@@ -43,6 +54,9 @@ namespace Izburs.Web
             services.ConfigureApplicationCookie(opt =>
             {
                 opt.LoginPath = new PathString("/Admin/Giris");
+                opt.AccessDeniedPath = new PathString("/Admin/AccessDenied");
+                opt.SlidingExpiration = true;
+
                 opt.Cookie.Name = "IzbursNet";
                 opt.Cookie.HttpOnly = true; // bu cookie javascript ile çekilemesin.
                 opt.Cookie.SameSite = SameSiteMode.Strict; // BU COOKie bu adalan adý dýþýnda hiçbir subdomain vs. de kullanýlamaz
@@ -51,9 +65,9 @@ namespace Izburs.Web
            
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddSession(option =>
-            option.IdleTimeout = TimeSpan.FromSeconds(120)
-            );
+            //services.AddSession(option =>
+            //option.IdleTimeout = TimeSpan.FromSeconds(120)
+            //);
             services.AddMemoryCache();
         }
 

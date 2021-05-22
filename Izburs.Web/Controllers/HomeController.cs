@@ -28,7 +28,7 @@ namespace Izburs.Web.Controllers
             var donem = drp.SonDonem();
             ViewBag.BuyilBurslu = data.Where(x => x.DonemID == donem.Id&&x.BursDurumID==2).ToList().Count;
             ViewBag.BuyilBasvuru = data.Where(x => x.DonemID == donem.Id).ToList().Count;
-            ViewBag.Toplam = data.ToList().Count;
+            ViewBag.Toplam = data.ToList().Count + 18374 + 31769;
             return View();
         }
         //public IActionResult Giris()

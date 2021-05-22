@@ -1,0 +1,37 @@
+﻿@model List<Haber>
+<!-- Section: COURSES -->
+@{
+    string yazi = "";
+}
+<div class="col-md-6">
+    <h3 class="text-uppercase line-bottom mt-0 line-height-1"><i class="fa fa-calendar mr-10"></i>Izburs <span class="text-theme-color-2">Etkinlikler</span></h3>
+    @foreach (var item in Model)
+    {
+        <article class="post media-post clearfix pb-0 mb-10">
+            <a href="#" class="post-thumb mr-20"><img alt="" src="@item.Resim"></a>
+            <div class="post-right">
+                <h4 class="mt-0 mb-5"><a href="/Haber/Oku/@item.Id">@item.Baslik</a></h4>
+                <ul class="list-inline font-12 mb-5">
+                    <li class="pr-0"><i class="fa fa-calendar mr-5"></i> @item.KayitTarihi.ToShortDateString() |</li>
+                    <li class="pl-5"><i class="fa fa-map-marker mr-5"></i>Etkinlik</li>
+                </ul>
+                <p class="mb-0 font-13">
+                    @{
+                        if (item.Icerik.Length > 100)
+                        {
+                            yazi = item.Icerik.Substring(0, 100);
+                            Html.Raw(yazi);
+                        }
+                        else
+                        {
+                            yazi = item.Icerik.Substring(0, item.Icerik.Length);
+                            Html.Raw(yazi);
+                        }
+
+                    }
+                </p>
+                <a class="text-theme-colored font-13" href="/Haber/Oku/@item.Id">Devamını Oku →</a>
+            </div>
+        </article>
+    }
+</div>

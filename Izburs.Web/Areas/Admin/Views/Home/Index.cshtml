@@ -24,6 +24,32 @@
     }
 </script>
 <script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawVisualization);
+
+    function drawVisualization() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable([
+            ['AYLAR', 'Başvuru', { role: 'style' }, { role: 'annotation' }],
+            ['2017', 5590, '#b87333', '5590'],
+            ['2018', 18374, 'silver', '18374'],
+            ['2019', 13407, 'gold', '13407'],
+            ['2020', 12771, 'color: #e5e4e2', '12771']
+        ]);
+
+        var options = {
+          /*  title: 'Monthly Coffee Production by Country',*/
+            vAxis: { title: 'BAŞVURULAR' },
+            hAxis: { title: 'Adet' },
+            seriesType: 'bars',
+            series: { 5: { type: 'line' } }
+        };
+
+        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+</script>
+<script type="text/javascript">
     $(document).ready(function () {
         //$("#btnAcik").hide();
         //$("#btnKapali").hide();
@@ -176,172 +202,173 @@
                         <!-- Open Project card end -->
                         <!-- Notification Start -->
                         @*<div class="col-md-12 col-xl-5">
-                            <div class="card">
-                                <div class="card-block">
-                                    <h5>Son Yapılan İşlemler</h5>
+                                <div class="card">
+                                    <div class="card-block">
+                                        <h5>Son Yapılan İşlemler</h5>
+                                    </div>
+                                    <div class="card-block p-t-20">
+                                        <div class="card-notification">
+                                            <div class="card-noti-conatin">
+                                                <h6>5 mins ago</h6>
+                                                <p class="text-muted m-b-30">jennifer sent you an attachament</p>
+                                            </div>
+                                        </div>
+                                        <div class="card-notification">
+                                            <div class="card-noti-conatin">
+                                                <h6>45 mins ago</h6>
+                                                <p class="text-muted m-b-30">Paul has sent a request for <span>access</span> to the project folder</p>
+                                            </div>
+                                        </div>
+                                        <div class="card-notification">
+                                            <div class="card-noti-conatin">
+                                                <h6>2 days ago</h6>
+                                                <p class="text-muted m-b-30">Demin change the dedline on the project</p>
+                                            </div>
+                                        </div>
+                                        <div class="card-notification">
+                                            <div class="card-noti-conatin">
+                                                <h6>12 mins ago</h6>
+                                                <p class="text-muted m-b-30">jennifer invite you to join the project</p>
+                                            </div>
+                                        </div>
+                                        <div class="card-notification">
+                                            <div class="card-noti-conatin">
+                                                <h6>60 mins ago</h6>
+                                                <p class="text-muted m-b-30">Josephine <span>share</span> a folder with you</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-block p-t-20">
-                                    <div class="card-notification">
-                                        <div class="card-noti-conatin">
-                                            <h6>5 mins ago</h6>
-                                            <p class="text-muted m-b-30">jennifer sent you an attachament</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-notification">
-                                        <div class="card-noti-conatin">
-                                            <h6>45 mins ago</h6>
-                                            <p class="text-muted m-b-30">Paul has sent a request for <span>access</span> to the project folder</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-notification">
-                                        <div class="card-noti-conatin">
-                                            <h6>2 days ago</h6>
-                                            <p class="text-muted m-b-30">Demin change the dedline on the project</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-notification">
-                                        <div class="card-noti-conatin">
-                                            <h6>12 mins ago</h6>
-                                            <p class="text-muted m-b-30">jennifer invite you to join the project</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-notification">
-                                        <div class="card-noti-conatin">
-                                            <h6>60 mins ago</h6>
-                                            <p class="text-muted m-b-30">Josephine <span>share</span> a folder with you</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>*@
+                            </div>*@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-block">
-                                    <h5>Number of Transaction</h5>
+                                    <h5>BAŞVURU SAYILARI</h5>
                                 </div>
                                 @*<div class="card-block client-card table-1-card p-t-0">*@
-                                    <div id="piechart" style="width: 600px; height: 500px;"></div>
+                                <div id="chart_div" style="width: 900px; height: 500px;"></div>
+                                <div id="piechart" style="width: 600px; height: 500px;"></div>
                                 @*</div>*@
                             </div>
                         </div>
                         <!-- Notification End -->
                         <!-- Todo card start -->
                         @*<div class="col-md-12 col-xl-4">
-            <div class="card">
-                <div class="card-header">
-                    <h5>Yapılacaklar Listesi</h5>
-                    <label class="label label-success">Today</label>
-                </div>
-                <div class="card-block">
-                    <div class="input-group input-group-button">
-                        <input type="text" class="form-control add_task_todo" placeholder="Create your task list" name="task-insert">
-                        <span class="input-group-addon" id="basic-addon1">
-                            <button id="add-btn" class="btn btn-primary">Add Task</button>
-                        </span>
-                    </div>
-                    <div class="new-task">
-                        <div class="to-do-list">
-                            <div class="checkbox-fade fade-in-primary">
-                                <label class="check-task">
-                                    <input type="checkbox" value="">
-                                    <span class="cr">
-                                        <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
-                                    </span>
-                                    <span>Hey.. Attach your new file</span>
-                                </label>
-                            </div>
-                            <div class="f-right">
-                                <a href="#!" class="delete_todolist"><i class="icofont icofont-ui-delete"></i></a>
-                            </div>
-                        </div>
-                        <div class="to-do-list">
-                            <div class="checkbox-fade fade-in-primary">
-                                <label class="check-task">
-                                    <input type="checkbox" value="">
-                                    <span class="cr">
-                                        <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
-                                    </span>
-                                    <span>New Attachment has error</span>
-                                </label>
-                            </div>
-                            <div class="f-right">
-                                <a href="#!" class="delete_todolist"><i class="icofont icofont-ui-delete"></i></a>
-                            </div>
-                        </div>
-                        <div class="to-do-list">
-                            <div class="checkbox-fade fade-in-primary">
-                                <label class="check-task">
-                                    <input type="checkbox" value="">
-                                    <span class="cr">
-                                        <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
-                                    </span>
-                                    <span>Have to submit early</span>
-                                </label>
-                            </div>
-                            <div class="f-right">
-                                <a href="#!" class="delete_todolist"><i class="icofont icofont-ui-delete"></i></a>
-                            </div>
-                        </div>
-                        <div class="to-do-list">
-                            <div class="checkbox-fade fade-in-primary">
-                                <label class="check-task">
-                                    <input type="checkbox" value="">
-                                    <span class="cr">
-                                        <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
-                                    </span>
-                                    <span>10 pages has to be completed</span>
-                                </label>
-                            </div>
-                            <div class="f-right">
-                                <a href="#!" class="delete_todolist"><i class="icofont icofont-ui-delete"></i></a>
-                            </div>
-                        </div>
-                        <div class="to-do-list">
-                            <div class="checkbox-fade fade-in-primary">
-                                <label class="check-task">
-                                    <input type="checkbox" value="">
-                                    <span class="cr">
-                                        <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
-                                    </span>
-                                    <span>Navigation working</span>
-                                </label>
-                            </div>
-                            <div class="f-right">
-                                <a href="#!" class="delete_todolist"><i class="icofont icofont-ui-delete"></i></a>
-                            </div>
-                        </div>
-                        <div class="to-do-list">
-                            <div class="checkbox-fade fade-in-primary">
-                                <label class="check-task">
-                                    <input type="checkbox" value="">
-                                    <span class="cr">
-                                        <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
-                                    </span>
-                                    <span>Files submited successfully</span>
-                                </label>
-                            </div>
-                            <div class="f-right">
-                                <a href="#!" class="delete_todolist"><i class="icofont icofont-ui-delete"></i></a>
-                            </div>
-                        </div>
-                        <div class="to-do-list">
-                            <div class="checkbox-fade fade-in-primary">
-                                <label class="check-task">
-                                    <input type="checkbox" value="">
-                                    <span class="cr">
-                                        <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
-                                    </span>
-                                    <span>Work Complete Before Time</span>
-                                </label>
-                            </div>
-                            <div class="f-right">
-                                <a href="#!" class="delete_todolist"><i class="icofont icofont-ui-delete"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>*@
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Yapılacaklar Listesi</h5>
+                                        <label class="label label-success">Today</label>
+                                    </div>
+                                    <div class="card-block">
+                                        <div class="input-group input-group-button">
+                                            <input type="text" class="form-control add_task_todo" placeholder="Create your task list" name="task-insert">
+                                            <span class="input-group-addon" id="basic-addon1">
+                                                <button id="add-btn" class="btn btn-primary">Add Task</button>
+                                            </span>
+                                        </div>
+                                        <div class="new-task">
+                                            <div class="to-do-list">
+                                                <div class="checkbox-fade fade-in-primary">
+                                                    <label class="check-task">
+                                                        <input type="checkbox" value="">
+                                                        <span class="cr">
+                                                            <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+                                                        </span>
+                                                        <span>Hey.. Attach your new file</span>
+                                                    </label>
+                                                </div>
+                                                <div class="f-right">
+                                                    <a href="#!" class="delete_todolist"><i class="icofont icofont-ui-delete"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="to-do-list">
+                                                <div class="checkbox-fade fade-in-primary">
+                                                    <label class="check-task">
+                                                        <input type="checkbox" value="">
+                                                        <span class="cr">
+                                                            <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+                                                        </span>
+                                                        <span>New Attachment has error</span>
+                                                    </label>
+                                                </div>
+                                                <div class="f-right">
+                                                    <a href="#!" class="delete_todolist"><i class="icofont icofont-ui-delete"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="to-do-list">
+                                                <div class="checkbox-fade fade-in-primary">
+                                                    <label class="check-task">
+                                                        <input type="checkbox" value="">
+                                                        <span class="cr">
+                                                            <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+                                                        </span>
+                                                        <span>Have to submit early</span>
+                                                    </label>
+                                                </div>
+                                                <div class="f-right">
+                                                    <a href="#!" class="delete_todolist"><i class="icofont icofont-ui-delete"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="to-do-list">
+                                                <div class="checkbox-fade fade-in-primary">
+                                                    <label class="check-task">
+                                                        <input type="checkbox" value="">
+                                                        <span class="cr">
+                                                            <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+                                                        </span>
+                                                        <span>10 pages has to be completed</span>
+                                                    </label>
+                                                </div>
+                                                <div class="f-right">
+                                                    <a href="#!" class="delete_todolist"><i class="icofont icofont-ui-delete"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="to-do-list">
+                                                <div class="checkbox-fade fade-in-primary">
+                                                    <label class="check-task">
+                                                        <input type="checkbox" value="">
+                                                        <span class="cr">
+                                                            <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+                                                        </span>
+                                                        <span>Navigation working</span>
+                                                    </label>
+                                                </div>
+                                                <div class="f-right">
+                                                    <a href="#!" class="delete_todolist"><i class="icofont icofont-ui-delete"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="to-do-list">
+                                                <div class="checkbox-fade fade-in-primary">
+                                                    <label class="check-task">
+                                                        <input type="checkbox" value="">
+                                                        <span class="cr">
+                                                            <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+                                                        </span>
+                                                        <span>Files submited successfully</span>
+                                                    </label>
+                                                </div>
+                                                <div class="f-right">
+                                                    <a href="#!" class="delete_todolist"><i class="icofont icofont-ui-delete"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="to-do-list">
+                                                <div class="checkbox-fade fade-in-primary">
+                                                    <label class="check-task">
+                                                        <input type="checkbox" value="">
+                                                        <span class="cr">
+                                                            <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+                                                        </span>
+                                                        <span>Work Complete Before Time</span>
+                                                    </label>
+                                                </div>
+                                                <div class="f-right">
+                                                    <a href="#!" class="delete_todolist"><i class="icofont icofont-ui-delete"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
                         <!-- Todo card end -->
                         <!-- Social user card start -->
                         <div class="col-lg-6 col-xl-3">
@@ -359,28 +386,28 @@
                                             <button class="btn btn-success" type="submit" id="btnDurum">AÇIK</button>
                                         </p>
                                         @*<p id="btnKapali">
-                            <button class="btn btn-danger" type="submit" id="btnDurum">KAPALI</button>
-                        </p>*@
+                                                <button class="btn btn-danger" type="submit" id="btnDurum">KAPALI</button>
+                                            </p>*@
                                         @* </form> *@
 
                                     </div>
                                 </div>
                                 @*<div class="card-footer bg-inverse">
-                    <div class="row text-center">
-                        <div class="col-sm-4">
-                            <h4>134</h4>
-                            <span>Shots</span>
-                        </div>
-                        <div class="col-sm-4">
-                            <h4>13,227</h4>
-                            <span>Shots</span>
-                        </div>
-                        <div class="col-sm-4">
-                            <h4>488</h4>
-                            <span>Shots</span>
-                        </div>
-                    </div>
-                </div>*@
+                                        <div class="row text-center">
+                                            <div class="col-sm-4">
+                                                <h4>134</h4>
+                                                <span>Shots</span>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <h4>13,227</h4>
+                                                <span>Shots</span>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <h4>488</h4>
+                                                <span>Shots</span>
+                                            </div>
+                                        </div>
+                                    </div>*@
                             </div>
                         </div>
                     </div>

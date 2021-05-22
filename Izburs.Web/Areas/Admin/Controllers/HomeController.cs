@@ -1,4 +1,5 @@
-﻿using Izburs.Business.Repositories.EF;
+﻿using Izburs.Business.Enum;
+using Izburs.Business.Repositories.EF;
 using Izburs.DAL.Entities;
 using Izburs.Web.Areas.Admin.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -30,17 +31,21 @@ namespace Izburs.Web.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            var ayar = arp.GetirIdile(2);
+            var ayar = arp.Getir();
             var donem = drp.SonDonem();
             var veri = brp.Liste();
             var basvurusay = veri.Where(x => x.DonemID == donem.Id).ToList();
-            var burslu = veri.Where(x => x.BursDurumID == 2).ToList();
-            var mezun = veri.Where(x => x.BursDurumID == 5).ToList();
-            var basarisiz = veri.Where(x => x.BursDurumID == 4).ToList();
+            var burslu = veri.Where(x => x.BursDurumID == (int)Sabitler.OgrenciDurum.Basarili).ToList();
+            var mezun = veri.Where(x => x.BursDurumID == (int)Sabitler.OgrenciDurum.MezunOldu).ToList();
+            var basarisiz = veri.Where(x => x.BursDurumID == (int)Sabitler.OgrenciDurum.Basarisiz).ToList();
             ViewBag.BasvuruSayisi = basvurusay.Count.ToString();
             ViewBag.Burslu = burslu.Count.ToString();
             ViewBag.Mezun = mezun.Count.ToString();
             ViewBag.Basarisiz = basarisiz.Count.ToString();
+            return View();
+        }
+        public IActionResult AccessDenied()
+        {
             return View();
         }
         [AllowAnonymous]
