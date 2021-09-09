@@ -16,7 +16,7 @@ namespace Izburs.Web.ViewComponents
         public IViewComponentResult Invoke()
         {
             HaberRepository hrp = new HaberRepository();
-            return View(hrp.GetirKatId(2));
+            return View(hrp.GetirKatId(2,3));
         }
     }
 }

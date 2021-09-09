@@ -16,7 +16,7 @@ namespace Izburs.Web.ViewComponents
         public IViewComponentResult Invoke()
         {
             SSSRepository hrp = new SSSRepository();
-            return View(hrp.GetirHepsi());
+            return View(hrp.GetirHepsi(5));
         }
     }
 }

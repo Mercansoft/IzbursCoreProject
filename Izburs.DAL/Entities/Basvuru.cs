@@ -25,7 +25,7 @@ namespace Izburs.DAL.Entities
         [Required(ErrorMessage = "Doğum Tarihinizi Giriniz")]
         public DateTime DogumTarihi { get; set; }
         [Required(ErrorMessage = "Lütfen Resim yükleyiniz")]
-        [RegularExpression(@"([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.gif)$", ErrorMessage = "Sadece JPG ve PNG resim formatlarını yükleyebilirsiniz.")]
+        [RegularExpression(@"([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.gif)$", ErrorMessage = "Sadece JPG ve PNG resim formatlarını destekler, fotoğrafınızın adında türkçe karakter olmamalıdır. ")]
         public string Resim { get; set; }
         public string Adres { get; set; }
         [RegularExpression("^[0-9]*$", ErrorMessage = "Telefon : Lütfen sadece rakam yazınız")]

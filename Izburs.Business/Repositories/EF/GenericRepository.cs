@@ -58,6 +58,11 @@ namespace Izburs.Business.Repositories.EF
             using var context = new IzbursContext();
             return context.Set<Tablo>().ToList();
         }
+        public List<Tablo> GetirHepsi(int Adet)
+        {
+            using var context = new IzbursContext();
+            return context.Set<Tablo>().Take(Adet).ToList();
+        }
         public Tablo GetirIdile(int id)
         {
             using var context = new IzbursContext();
